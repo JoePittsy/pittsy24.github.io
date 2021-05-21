@@ -261,7 +261,7 @@ h3 {
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  
+  width: 100%;  
 }
 #title {
   display: inline-block;
