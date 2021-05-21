@@ -14,9 +14,9 @@ $("area").click( e => {
 
     
     $('#guess').append(cover);   
-
-    console.log(coords)
-    cover.css({'top': Number(coords[1])-5+'px', 'left': Number(coords[0])+140+'px'})
+    var offset = ($("#guess").width() - $("#guess img").width()) / 2
+    console.log(offset)
+    cover.css({ 'top': Number(coords[1]) - 5 + 'px', 'left': Number(coords[0]) + offset +'px'})
 
 
 })
