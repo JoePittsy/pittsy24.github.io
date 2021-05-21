@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-gb">
-  <head>
-    <script type="application/ld+json">
+
+<head>
+  <script type="application/ld+json">
       {
         "@context": "http://schema.org",
         "@type": "Person",
@@ -22,192 +23,133 @@
       }
     </script>
 
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@JoePittsy/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@JoePittsy/>
     <meta
-      name="twitter:description"
-      content="Website of Joe Pitts, a 20 year old Developer and Student of Computer Science at the University of Lincoln UK"
-      name="description"
-    />
-    <meta name="twitter:title" content="Joe Pitts | Developer" />
-    <meta name="twitter:creator" content="@JoePittsy" />
-    <meta
-      property="og:image"
-      content="https://joepitts.co.uk/resources/JoePitts.jpg"
-    />
-    <meta
-      name="twitter:image"
-      content="https://joepitts.co.uk/resources/JoePitts.jpg"
-    />
+      name=" twitter:description"
+    content="Website of Joe Pitts, a 20 year old Developer and Student of Computer Science at the University of Lincoln UK"
+    name="description" />
+  <meta name="twitter:title" content="Joe Pitts | Developer" />
+  <meta name="twitter:creator" content="@JoePittsy" />
+  <meta property="og:image" content="https://joepitts.co.uk/resources/JoePitts.jpg" />
+  <meta name="twitter:image" content="https://joepitts.co.uk/resources/JoePitts.jpg" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-114382787-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114382787-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "UA-114382787-2");
+  </script>
+  <script src="/js/darkMode.js" type="text/javascript"></script>
+  <link href="/resources/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+  <link href="/resources/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+  <link href="/resources/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+  <link href="/resources/site.webmanifest" rel="manifest" />
+  <link href="/resources/safari-pinned-tab.svg" rel="mask-icon" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Joe Pitts | Developer</title>
+  <link href="/style.css" rel="stylesheet" type="text/css" />
+  <meta
+    content="Website of Joe Pitts, a 20 year old Developer and Student of Computer Science at the University of Lincoln UK."
+    name="description" />
+  <meta lang="en-gb" />
+  <noscript>
+    <style>
+      .jsonly {
+        display: none;
       }
-      gtag("js", new Date());
-      gtag("config", "UA-114382787-2");
-    </script>
-    <script src="/js/darkMode.js" type="text/javascript"></script>
-    <link
-      href="/resources/apple-touch-icon.png"
-      rel="apple-touch-icon"
-      sizes="180x180"
-    />
-    <link
-      href="/resources/favicon-32x32.png"
-      rel="icon"
-      sizes="32x32"
-      type="image/png"
-    />
-    <link
-      href="/resources/favicon-16x16.png"
-      rel="icon"
-      sizes="16x16"
-      type="image/png"
-    />
-    <link href="/resources/site.webmanifest" rel="manifest" />
-    <link href="/resources/safari-pinned-tab.svg" rel="mask-icon" />
-    <meta content="#da532c" name="msapplication-TileColor" />
-    <meta content="#ffffff" name="theme-color" />
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Joe Pitts | Developer</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" />
-    <meta
-      content="Website of Joe Pitts, a 20 year old Developer and Student of Computer Science at the University of Lincoln UK."
-      name="description"
-    />
-    <meta lang="en-gb" />
-    <noscript
-      ><style>
-        .jsonly {
-          display: none;
-        }
-      </style></noscript
-    >
-  </head>
-  <body link="black" style="height: auto;">
-    <div class="content" id="content">
-      <header>
-        <div id="containter">
-          <div id="header">
-            <img
-              alt="Joe Pitts"
-              id="logo"
-              src="/resources/JoePitts.jpg"
-              title="Joe Pitts"
-              width="10%"
-            />
-            <a href="/" id="title"> <p>Joe Pitts</p></a>
-            <div
-              class="burger"
-              onclick="document.getElementById('drop').click();"
-            >
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        </div>
-        <aside>
-          <nav id="burger">
-            <label
-              class="toggle"
-              for="drop"
-              style="pointer-events: none;"
-            ></label>
-            <input id="drop" type="checkbox" />
-            <ul class="menu" id="burger_menu">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/blog">Blog</a>
-              </li>
-              <li>
-                <a href="/work.html">My Work</a>
-              </li><li>
-                <a href="/games/">Games</a>
-              </li>
-              
-              <li>
-                <a href="/instagram.html">Photography</a>
-              </li>
-              <li>
-                <a class="toggleDark" onclick="toggleNightMode();">Dark Mode</a>
-              </li>
-            </ul>
-          </nav>
+    </style>
+  </noscript>
+</head>
+
+<body link="black" style="height: auto;">
+  <div class="content" id="content">
+    <header>
+      <div id="container">
+        <div id="header">
+          <img alt="Joe Pitts" id="logo" src="/resources/JoePitts.jpg" title="Joe Pitts" width="10%" />
+          <!-- <a href="/" id="title">
+            <p>Joe Pitts</p>
+          </a> -->
           <nav id="normalMenu">
             <ul class="menu">
               <li>
-                <a href="/">Home</a>
+                <a href="/" id="currentPage">Home</a>
               </li>
               <li>
                 <a href="/blog">Blog</a>
               </li>
               <li>
                 <a href="/work.html">My Work</a>
-              </li><li>
+              </li>
+              <li>
                 <a href="/games/">Games</a>
               </li>
-              
-              <li>
-                <a href="/instagram.html">Photography</a>
-              </li>
-              <li>
-                <a class="toggleDark" onclick="toggleNightMode();">Dark Mode</a>
+              <li id="darkItem">
+                <img class="toggleDark" onclick="toggleNightMode()" src="resources/moon.svg">
+                <!-- <a class="toggleDark" onclick="toggleNightMode();">Dark Mode</a> -->
               </li>
             </ul>
           </nav>
-        </aside>
-      </header>
-      <hr />
-      <h1>About Me</h1>
-      <p>
-        I'm Joe Pitts, a Developer and final year Computer Science student at
-        the
-        <a href="https://www.lincoln.ac.uk/">University of Lincoln</a>. Read my
-        latest blog post about
-        <a href="/blog/creating-a-light-alarm-clock-with-azure.html"
-          >creating a light alarm clock with the MXChip</a
-        >
-        or have a look at some of my personal projects and work. You can view my
-        <a href="resources/Joe-Pitts-CV.pdf">CV here</a>.
-      </p>
-      <h2>Hire me</h2>
-      <p>
-        Do you want a new website? Maybe you need an application building?
-        Struggling to understand programming and need a tutor? Whichever it be
-        send me an email, I can help!
-      </p>
+          <div class="burger" onclick="document.getElementById('drop').click();">
+            <div></div>
+            <div></div>
+            <div></div>
 
-      <h3>Contact Me</h3>
-      <p>
-        Send me an email at
-        <!--email_off--><a href="mailto:joepittsy@gmail.com" target="_top"
-          >joepittsy@gmail.com</a
-        ><!--/email_off-->
-        or a direct message on either
-        <a href="https://twitter.com/JoePittsy">Twitter</a> or
-        <a href="https://instagram.com/JoePittsy">Instagram.</a>
-      </p>
+          </div>
+        </div>
+      </div>
+
+    </header>
+    <hr />
+    <h1>About Me</h1>
+    <p>
+      Hi, I'm Joe. Solutions Developer at <a href="https://truenorthit.co.uk/">TrueNorthIT</a> and Computer Science
+      graduate from the University of Lincoln. This website is a place for me to write about my projects and a place to
+      publish my work and demos. Read my latest project post on building a <a
+        href="/blog/creating-a-light-alarm-clock-with-azure.html">light alarm clock.</a>
+    </p>
+    <h2>Current Work</h2>
+    <p>
+      I've recently been working on a tumour detection neural network, called DeepTumour, for my dissertation. It's powered by Python,
+      Detectron2 and the LIDC-IDRI dataset. A blog post with demonstration will be published soon but you can read the <a href="resources/Deep_Tumour.pdf">full report here.</a>
+    </p>
+
+    <h3>Contact Me</h3>
+    <p>
+      Send me an email at
+      <!--email_off--><a href="mailto:joepittsy@gmail.com" target="_top">joepittsy@gmail.com</a>
+      <!--/email_off-->
+      or a direct message on either
+      <a href="https://twitter.com/JoePittsy">Twitter</a> or
+      <a href="https://www.linkedin.com/in/joepittsy/">Linkedin.</a>
+    </p>
+  </div>
+  <div class="footer">
+    <ul class="footerContainer">
+      <li><p id="copyright">Copyright © 2018-2021, Joe Pitts. All rights reserved.</p></li>
+      <a href="https://www.linkedin.com/in/joepittsy"><img class="footerLogo" src="resources/ln.svg"></a>
+      <a href="https://github.com/JoePittsy"><li><img class="footerLogo" src="resources/github.svg"></li></a>
+      <a href="https://twitter.com/JoePittsy"><li><img class="footerLogo" src="resources/twitter.svg"></li></a>
+    </ul>
+
+    <div class="mobileFooterContainer">
+      <p id="copyright">Copyright © 2018-2021, Joe Pitts. All rights reserved.</p>
+      <div class="mobileFooter">
+        <a href="https://www.linkedin.com/in/joepittsy"><img class="footerLogo" src="resources/ln.svg"></a>
+        <a href="https://github.com/JoePittsy"><img class="footerLogo" src="resources/github.svg"></a>
+        <a href="https://twitter.com/JoePittsy"><img class="footerLogo" src="resources/twitter.svg"></a>
+      </div>
     </div>
-    <div class="footer">
-      <p align="center">
-        <a href="https://linkedin.com/in/JoePittsy">LinkedIn</a>&nbsp;&nbsp;
-        <a href="https://twitter.com/JoePittsy">Twitter</a>&nbsp;&nbsp;<a
-          href="https://instagram.com/JoePittsy"
-          >Instagram</a
-        >&nbsp;&nbsp;<a href="https://github.com/JoePittsy">GitHub</a>
-      </p>
-      <p id="copyright">Copyright © 2018-2020 Joe Pitts</p>
-    </div>
-  </body>
+
+  </div>
+</body>
+
 </html>
