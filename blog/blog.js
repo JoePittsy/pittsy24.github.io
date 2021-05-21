@@ -87,5 +87,3 @@ function createBlog (data, delay) {
 
 
 };
-
-x

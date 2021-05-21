@@ -1,34 +1,70 @@
 html[data-theme="dark"] {
-  --text-color-normal: #e1e1e1;
-  --background-color-normal: #121212;
-  --link-normal: #70c6ff;
-  --link-visited-normal: #bd8cd2;
-  --footer-color-normal: #0a0a0a;
+  --heading-colour: #e1e1e1;
+  --text-colour: #e1e1e1;
+  --background-colour: #121212;
+  --link-shadow: none;
+  --link-unvisited: rgba(131, 255, 191, 0.781);
+  --link-visited: rgba(96, 184, 138, 0.781);
+  --footer-colour: #0a0a0a;
   --blog-background: #101010;
   --blog-shadow: rgba(255, 255, 255, 0.1);
+  --nav-fade: #e1e1e1c4;
+  --nav-background: rgba(166, 250, 207, 0.4);
+
 }
 
 html {
-  --text-color-normal: #000;
-  --background-color-normal: #f9f9fa;
-  --link-normal: #00568f;
-  --link-visited-normal: #694d75;
-  --footer-color-normal: #ececec;
+  --heading-colour: #181E2B;
+  --text-colour: #1F2937;
+  --background-colour: #ffffff;
+  --link-unvisited: #34D399;
+  --link-visited: #41a580;
+  --link-shadow: rgb(209,250,229, .6);
+  --footer-colour: #ececec;
   --blog-background: #fffffe;
   --blog-shadow: rgba(12, 12, 13, 0.1);
+  --nav-fade: #4B5563;
+  --nav-background: rgb(209,250,229, .4);
+  
+  /* overflow: overlay; Works on chrome and (safari?) but not firefox :( */
+}
+
+
+/* way the hell off screen */
+.scrollbar-measure {
+	width: 100px;
+	height: 100px;
+	overflow: scroll;
+	position: absolute;
+	top: -9999px;
 }
 
 a:link {
-  color: var(--link-normal);
+  color: var(--link-unvisited);
   text-decoration: none;
+  box-shadow: inset 0 -.125em 0 0 #fff,inset 0 -.375em 0 0 var(--link-shadow);
 }
 
 a:hover {
   text-decoration: underline;
+  
+}
+
+#darkItem{
+  float: right;
+}
+
+#blogBox{
+  height: 200vh;
 }
 
 .toggleDark {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  /* margin-left: 100%; */
   cursor: pointer;
+  /* float: right; */
 }
 
 body {
@@ -42,9 +78,10 @@ body {
     roboto, noto, "Droid Sans", cantarell, oxygen, ubuntu,
     "franklin gothic medium", "century gothic", "Liberation Sans", sans-serif;
   font-size: 18px;
-  color: var(--text-color-normal);
+  font-weight: 500;
+  color: var(--text-colour);
   padding: 0 10px 8rem;
-  background-color: var(--background-color-normal);
+  background-color: var(--background-colour);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -52,6 +89,7 @@ h1,
 h2,
 h3 {
   line-height: 1.2;
+  color: var(--heading-colour);
 }
 
 h1 {
@@ -78,12 +116,14 @@ h3 {
   margin-block-end: 1em;
 }
 
-#containter {
+#container {
   height: 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+
 .blog-container {
   background: var(--blog-background);
   border-radius: 5px;
@@ -109,10 +149,10 @@ h3 {
 }
 
 .blog-container:hover .blog-title h1 a {
-  color: var(--link-normal);
+  color: var(--link-unvisited);
 }
 .blog-title h1 a {
-  color: var(--text-color-normal);
+  color: var(--text-colour);
   font-weight: bold;
   font-size: 1.2rem;
   padding-top: 1rem;
@@ -215,15 +255,19 @@ h3 {
 #logo {
   border-radius: 50%;
   vertical-align: middle;
-  width: 12.5%;
+  width: 8.5%;
 }
 #header {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  width: 100%;  
 }
 #title {
   display: inline-block;
   vertical-align: middle;
   margin-left: 20px;
+  box-shadow: none;
 }
 #title p {
   display: block;
@@ -233,18 +277,24 @@ h3 {
   margin-block-end: 0.67em;
 }
 #title p {
-  color: var(--text-color-normal);
+  color: var(--heading-colour);
+}
+
+#title:visited {
+  color: var(--heading-colour);
 }
 
 #copyright {
-  color: var(--footer-color-normal);
-  filter: invert(1);
+  color: var(--nav-fade);
+  display: inline;
+  float: left;
+  /* filter: invert(1); */
   font-size: 0.75em;
-  margin-bottom: 0px;
+  margin: 0px;
 }
 
 a:visited {
-  color: var(--link-visited-normal);
+  color: var(--link-visited);
   text-decoration: none;
 }
 
@@ -265,7 +315,7 @@ html {
 .content {
   margin: 0 auto;
   padding-top: 2%;
-  max-width: 640px;
+  max-width: 50vw;
   width: 94%;
 }
 
@@ -283,13 +333,52 @@ html {
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: var(--footer-color-normal);
+  background-color: var(--footer-colour);
   text-align: center;
   transition: background-color 0.3s;
 }
-.footer a {
-  color: var(--text-color-normal);
+
+.footerContainer{
+  max-width: 55vw;
+  list-style: none;
+  text-align: center; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
+
+.mobileFooterContainer{
+    display: none;
+}
+
+
+.mobileFooter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.footer a {
+  color: var(--text-colour);
+  box-shadow: none;
+
+}
+
+.footerLogo{
+  width: 24px;
+  height: 24px;
+  float: right;
+  padding: 0.1rem;
+  margin-left: 0.5rem;
+  filter: invert(33%) sepia(23%) saturate(379%) hue-rotate(175deg) brightness(88%) contrast(86%);
+}
+
+
+
+
 /* button {
   background: none;
   color: inherit;
@@ -330,9 +419,12 @@ button::-moz-focus-inner {
 }
 nav {
   line-height: 2rem;
+  width: 100%;
+  display: inline;
 }
 nav a {
-  color: #252525;
+  color: #4B5563;
+  font-weight: bold;
 }
 .toggle,
 [id^="drop"] {
@@ -374,11 +466,17 @@ nav ul li {
 
 nav a {
   display: block;
-  padding-left: 1rem;
+  margin-left: 1rem;
   color: #252525;
   font-size: 1rem;
   text-decoration: none;
   outline: none;
+  background-image: linear-gradient(var(--nav-background),var(--nav-background));
+  background-size: 100% 0%;
+  background-repeat:no-repeat;
+  background-position: bottom;
+  transition: background 0.15s ease-in-out; /** I've changed the time for demo purposes **/
+  color: black;
 }
 nav ul li ul li:hover {
   text-decoration: underline;
@@ -386,7 +484,13 @@ nav ul li ul li:hover {
 /* Background color change on Hover */
 
 nav a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  background-size: 100% 120%;
+
+  /* background-color: var(--link-shadow); */
+  /* box-shadow: inset 0 -.125em 0 0 #fff,inset 0 -.375em 0 0 var(--link-shadow) !important; */
+
+  /* text-decoration: underline; */
 }
 /* Hide Dropdowns by Default
 * and giving it a position of absolute */
@@ -431,9 +535,13 @@ li > a:only-child:after {
 }
 
 .menu li a {
-  color: var(--text-color-normal);
+  color: var(--nav-fade);
+  box-shadow: none;
 }
-
+#currentPage{
+  color: var(--header-colour);
+  box-shadow: inset 0px -4px 0px 0px rgb(209,250,229, .6);
+}
 .burger {
   display: none;
   justify-content: flex-end;
@@ -446,7 +554,7 @@ li > a:only-child:after {
 .burger div {
   width: 35px;
   height: 5px;
-  background-color: var(--text-color-normal);
+  background-color: var(--text-colour);
   margin: 6px 0;
 }
 
@@ -459,7 +567,7 @@ li > a:only-child:after {
   transition: height 0.5s;
 }
 #burger ul li a {
-  color: var(--text-color-normal);
+  color: var(--text-colour);
 }
 @keyframes open {
   0% {
@@ -579,7 +687,7 @@ html[data-theme="dark"] .double-val-label > span {
 }
 
 .blogPost a h2 {
-  color: var(--text-color-normal);
+  color: var(--text-colour);
   text-decoration: none;
 }
 
@@ -588,7 +696,7 @@ html[data-theme="dark"] .double-val-label > span {
 }
 
 .blogPost h2 {
-  color: var(--text-color-normal);
+  color: var(--text-colour);
   padding-bottom: 0.25em;
   border-bottom: 1px solid #eaecef;
 }
@@ -672,7 +780,7 @@ small {
 
 
 #ttt_grid {
-  width: 100%;
+  width: 80%;
   height: 640px;
   display: none;
   pointer-events: none;
@@ -798,6 +906,8 @@ small {
     margin: 7.5%;
     border-radius: 5px;
     animation: swashIn 0.25s ease-in-out forwards;
+    top: 0;
+    left: 0;
 }
 #ttt_new_options{
     display: none;
@@ -812,6 +922,8 @@ small {
     margin: 7.5%;
     border-radius: 5px;
     animation: swashIn 0.25s ease-in-out forwards;
+    top: 0;
+    left: 0;
 
 
 }
@@ -881,7 +993,7 @@ small {
 
 
 h1>input[type="text"]{
-    background-color: var(--background-color-normal);
+    background-color: var(--background-colour);
     width: 10ch;
     font-size: 1em;
     font-weight: bold;
@@ -889,6 +1001,7 @@ h1>input[type="text"]{
     cursor: pointer;
     border: none;
     text-decoration: underline;
+    color: var(--heading-colour);
 }
 @keyframes slideInFromLeft {
   0% {
@@ -937,15 +1050,21 @@ h1>input[type="text"]{
   }
 }
 
+@media all and (max-width: 1000px){
+  .footerContainer{
+    display: none;
+  }
+  #copyright{
+    display: contents;
+  }
+  .mobileFooterContainer{
+    display: block;
+  }
+}
+
 
 @media all and (max-width: 530px) {
-  /* [id^=drop]:checked+#menu ul li{
-        animation-name: open;
-        visibility: visible;
-        animation-duration: 0.4s;
-        height: 32px;
-        opacity: 1;
-    } */
+ 
   [id^="drop"]:checked + ul#burger_menu li {
     animation-name: open;
     animation-fill-mode: both;
@@ -954,12 +1073,15 @@ h1>input[type="text"]{
     height: 32px;
     /* opacity: 1; */
   }
-  .burger {
-    display: block;
+
+  #header{
+    margin-top: 1rem;
+    margin-bottom: 0rem;
   }
-  #normalMenu {
-    display: none;
+  .content{
+    max-width: unset;
   }
+
 
   #burger ul li:nth-child(1) {
     animation-delay: 0s;

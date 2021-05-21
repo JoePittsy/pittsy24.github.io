@@ -1,8 +1,10 @@
 var url = new URL("http://joepitts.co.uk/games/ttt.html");
 var player;
-var peer = new Peer();
+var peer;
 var peerID;
 var conn;
+let passcode = [];
+
 
 var opponentsName = "Player ";
 
@@ -42,31 +44,7 @@ function changeOtherPlayersName(data) {
   $(`#ttt_player${player} input`)[0].value = v;
 }
 
-peer.on("open", function (id) {
-  console.log("My peer ID is: " + id);
-  peerID = id;
-  $("#ttt_new_options").fadeIn();
-  url.searchParams.append("code", id);
 
-  var u = new URL(window.location);
-  var id = u.searchParams.get("code");
-  if (id != null) {
-    console.log("Attempting connection");
-    connect(id);
-    // We joining a game bois
-  }
-
-  peer.on("connection", function (c) {
-    console.log("Connection established");
-    player = 1;
-    showGame();
-    conn = c;
-    // They connected to us
-    conn.on("open", () => {
-      conn.on("data", messageHandler);
-    });
-  });
-});
 
 // We're connecting to them
 function connect(id) {
@@ -298,6 +276,8 @@ function squareClicked(elm) {
     clicked: [bx, by],
     square: [x, y],
   };
+
+  console.log({data})
   conn.send(JSON.stringify(data));
   setTimeout(() => {
     if(running){indicate(grid[y][x].children());}
@@ -388,37 +368,88 @@ function showGame() {
   );
 }
 
+function getWord(callback){
+  fetch("https://random-words-api.vercel.app/word")
+    .then(data => {
+      return data.json();
+    }).then(json => {
+      callback(json[0].word);
+    })
+}
+
+
+
 $().ready(() => {
-  grid = [
-    [$(".ttt_big.top.left"), $(".ttt_big.top.middle"), $(".ttt_big.top.right")],
-    [$(".ttt_big.mid.left"), $(".ttt_big.mid.middle"), $(".ttt_big.mid.right")],
-    [$(".ttt_big.bot.left"), $(".ttt_big.bot.middle"), $(".ttt_big.bot.right")],
-  ];
-  $(".ttt_small").click(function () {
-    $(this).off();
-    $(this).css("pointer-events", "none");
-    squareClicked(this);
+  getWord(word => {
+    passcode.push(word);
+    getWord(word => {
+      passcode.push(word);
+      getWord(word => {
+        passcode.push(word);
+        console.log(passcode.join(""))
+        peer = new Peer(passcode.join(""));
+        grid = [
+          [$(".ttt_big.top.left"), $(".ttt_big.top.middle"), $(".ttt_big.top.right")],
+          [$(".ttt_big.mid.left"), $(".ttt_big.mid.middle"), $(".ttt_big.mid.right")],
+          [$(".ttt_big.bot.left"), $(".ttt_big.bot.middle"), $(".ttt_big.bot.right")],
+        ];
+        $(".ttt_small").click(function () {
+          $(this).off();
+          $(this).css("pointer-events", "none");
+          squareClicked(this);
+        });
+
+        $("#ttt_join").click(() => {
+          connect($("#ttt_code")[0].value);
+        });
+
+        $("#ttt_create").click(() => {
+          $("#ttt_instructions").fadeOut();
+          $("#ttt_new_options").fadeOut(
+            (callback = () => {
+              $("#ttt_gameid")[0].innerHTML =
+                'Join Code: <span id = "code">' + peerID + "</span>";
+              $("#ttt_copy_url").attr("data-clipboard-text", url.toString());
+              $("#ttt_gameid").fadeIn();
+              $("#ttt_buttons").fadeIn();
+
+              // $("#ttt_players").fadeIn();
+              // $("#ttt_grid").fadeIn(callback=resizeGrid);
+            })
+          );
+        });
+        peer.on("open", function (id) {
+          console.log("My peer ID is: " + id);
+          peerID = id;
+          $("#ttt_new_options").fadeIn();
+          url.searchParams.append("code", id);
+
+          var u = new URL(window.location);
+          var id = u.searchParams.get("code");
+          if (id != null) {
+            console.log("Attempting connection");
+            connect(id);
+            // We joining a game bois
+          }
+
+          peer.on("connection", function (c) {
+            console.log("Connection established");
+            player = 1;
+            showGame();
+            conn = c;
+            // They connected to us
+            conn.on("open", () => {
+              conn.on("data", messageHandler);
+            });
+          });
+        });
+
+      });
+    });
   });
 
-  $("#ttt_join").click( () => {
-    connect($("#ttt_code")[0].value);
-  });
 
-  $("#ttt_create").click(() => {
-    $("#ttt_instructions").fadeOut();
-    $("#ttt_new_options").fadeOut(
-      (callback = () => {
-        $("#ttt_gameid")[0].innerHTML =
-          'Join Code: <span id = "code">' + peerID + "</span>";
-        $("#ttt_copy_url").attr("data-clipboard-text", url.toString());
-        $("#ttt_gameid").fadeIn();
-        $("#ttt_buttons").fadeIn();
 
-        // $("#ttt_players").fadeIn();
-        // $("#ttt_grid").fadeIn(callback=resizeGrid);
-      })
-    );
-  });
 });
 
 $(window).on("resize", () => {
