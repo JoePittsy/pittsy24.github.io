@@ -25,7 +25,18 @@ html {
   --blog-shadow: rgba(12, 12, 13, 0.1);
   --nav-fade: #4B5563;
   --nav-background: rgb(209,250,229, .4);
+  
+  /* overflow: overlay; Works on chrome and (safari?) but not firefox :( */
+}
 
+
+/* way the hell off screen */
+.scrollbar-measure {
+	width: 100px;
+	height: 100px;
+	overflow: scroll;
+	position: absolute;
+	top: -9999px;
 }
 
 a:link {
@@ -41,6 +52,10 @@ a:hover {
 
 #darkItem{
   float: right;
+}
+
+#blogBox{
+  height: 200vh;
 }
 
 .toggleDark {
@@ -107,6 +122,8 @@ h3 {
   align-items: center;
   justify-content: space-between;
 }
+
+
 .blog-container {
   background: var(--blog-background);
   border-radius: 5px;
