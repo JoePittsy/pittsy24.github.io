@@ -116,78 +116,32 @@
       <header>
         <div id="container">
           <div id="header">
-            <img
-              alt="Joe Pitts"
-              id="logo"
-              src="/resources/JoePitts.jpg"
-              title="Joe Pitts"
-              width="10%"
-            />
-            <a href="/" id="title">
-              <p>Joe Pitts</p>
-            </a>
-            <div
-              class="burger"
-              onclick="document.getElementById('drop').click();"
-            >
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+            <img alt="Joe Pitts" id="logo" src="/resources/JoePitts.jpg" title="Joe Pitts" width="10%" />
+            <!-- <a href="/" id="title">
+                          <p>Joe Pitts</p>
+                        </a> -->
+            <nav id="normalMenu">
+              <ul class="menu">
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/blog" id="currentPage">Blog</a>
+                </li>
+                <li>
+                  <a href="/work.html">My Work</a>
+                </li>
+                <li>
+                  <a href="/games/">Games</a>
+                </li>
+                <li id="darkItem">
+                  <img class="toggleDark" onclick="toggleNightMode()" src="../resources/moon.svg">
+                  <!-- <a class="toggleDark" onclick="toggleNightMode();">Dark Mode</a> -->
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
-        <aside>
-          <nav id="burger">
-            <label
-              class="toggle"
-              for="drop"
-              style="pointer-events: none;"
-            ></label>
-            <input id="drop" type="checkbox" />
-            <ul class="menu" id="burger_menu">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/blog">Blog</a>
-              </li>
-              <li>
-                <a href="/work.html">My Work</a>
-              </li><li>
-                <a href="/games/">Games</a>
-              </li>
-              
-              <li>
-                <a href="/instagram.html">Photography</a>
-              </li>
-              <li>
-                <a class="toggleDark" onclick="toggleNightMode();">Dark Mode</a>
-              </li>
-            </ul>
-          </nav>
-          <nav id="normalMenu">
-            <ul class="menu">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/blog">Blog</a>
-              </li>
-              <li>
-                <a href="/work.html">My Work</a>
-              </li><li>
-                <a href="/games/">Games</a>
-              </li>
-              
-              <li>
-                <a href="/instagram.html">Photography</a>
-              </li>
-              <li>
-                <a class="toggleDark" onclick="toggleNightMode();">Dark Mode</a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
       </header>
       <hr />
       <div class="blogPost">
@@ -450,15 +404,27 @@
     </div>
 
     <div class="footer">
-      <p align="center">
-        <a href="https://linkedin.com/in/JoePittsy">LinkedIn</a>&nbsp;&nbsp;
-        <a href="https://twitter.com/JoePittsy">Twitter</a>&nbsp;&nbsp;<a
-          href="https://instagram.com/JoePittsy"
-          >Instagram</a
-        >&nbsp;&nbsp;<a href="https://github.com/JoePittsy">GitHub</a>
-      </p>
-      <p id="copyright">Copyright © 2018-2020 Joe Pitts</p>
-    </div>
+      <ul class="footerContainer">
+        <li>
+          <p id="copyright">Copyright © 2018-2021, Joe Pitts. All rights reserved.</p>
+        </li>
+        <a href="https://www.linkedin.com/in/joepittsy"><img class="footerLogo" src="../resources/ln.svg"></a>
+        <a href="https://github.com/JoePittsy">
+          <li><img class="footerLogo" src="../resources/github.svg"></li>
+        </a>
+        <a href="https://twitter.com/JoePittsy">
+          <li><img class="footerLogo" src="../resources/twitter.svg"></li>
+        </a>
+      </ul>
+    
+      <div class="mobileFooterContainer">
+        <p id="copyright">Copyright © 2018-2021, Joe Pitts. All rights reserved.</p>
+        <div class="mobileFooter">
+          <a href="https://www.linkedin.com/in/joepittsy"><img class="footerLogo" src="../resources/ln.svg"></a>
+          <a href="https://github.com/JoePittsy"><img class="footerLogo" src="../resources/github.svg"></a>
+          <a href="https://twitter.com/JoePittsy"><img class="footerLogo" src="../resources/twitter.svg"></a>
+        </div>
+      </div>
     <script defer>
       (function () {
         new ClipboardJS("#rotCopy, #mosCopy, #pyCopy");
