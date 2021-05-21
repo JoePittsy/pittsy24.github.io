@@ -16,7 +16,7 @@ $("area").click( e => {
     $('#guess').append(cover);   
 
     console.log(coords)
-    cover.css({'top': Number(coords[1])-5+'px', 'left': Number(coords[0])+34+'px'})
+    cover.css({'top': Number(coords[1])-5+'px', 'left': Number(coords[0])+140+'px'})
 
 
 })
