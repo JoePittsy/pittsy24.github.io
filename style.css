@@ -80,7 +80,9 @@ body {
   font-size: 18px;
   font-weight: 500;
   color: var(--text-colour);
-  padding: 0 10px 8rem;
+  padding-top: 0;
+  padding-bottom:8rem;
+  /* padding: 0 10px 8rem; */
   background-color: var(--background-colour);
   transition: background-color 0.3s, color 0.3s;
 }

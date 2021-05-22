@@ -31,21 +31,24 @@ window.addEventListener('load', function () {	// Create the measurement node
 
 	// Get the scrollbar width
 	var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-	console.log(scrollbarWidth); // Mac:  15
 
 	// Delete the DIV 
 	document.body.removeChild(scrollDiv);
 
-	document.getElementsByTagName("body")[0].style.padding = "0 " +scrollbarWidth+"px 8rem"
 
 	var root = document.compatMode == 'BackCompat' ? document.body : document.documentElement;
 	var isVerticalScrollbar = root.scrollHeight > root.clientHeight;
-	console.log(isVerticalScrollbar);
 
 	if (isVerticalScrollbar){
-		document.getElementsByTagName("body")[0].style.paddingRight = "0px";
+		console.log("SCROLL PADDING BY" + scrollbarWidth)
+		document.getElementsByTagName("body")[0].style.padding = "0 0px 8rem " + scrollbarWidth + "px"
 	}
-	document.getElementById("blogBox").style.height = "unset"
+	else{
+		document.getElementsByTagName("body")[0].style.padding = "0 " + scrollbarWidth + "px 8rem " + scrollbarWidth + "px"
+
+	}
+	var bb = document.getElementById("blogBox");
+	if (bb) bb.style.height = "unset"
 
 
 })
