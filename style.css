@@ -29,6 +29,18 @@ html {
   /* overflow: overlay; Works on chrome and (safari?) but not firefox :( */
 }
 
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: rgba(14, 158, 84, 0.459);
+}
+
+::selection {
+  color: white;
+  background: rgba(14, 158, 84, 0.459);
+
+}
+
+
 
 /* way the hell off screen */
 .scrollbar-measure {
