@@ -1,0 +1,77 @@
+#column-layout {
+    display: flex;
+    flex-direction: row;
+}
+
+#col-1 {
+    flex-grow: 2;
+    padding: 1rem;
+}
+
+#col-2 {
+    flex-grow: 1;
+    padding: 1rem;
+    width: 40%;
+}
+
+h1 {
+    border-bottom: 2px solid var(--link-unvisited);
+}
+
+.entry {
+    margin-bottom: 1rem;
+}
+
+.entry h2, h3, h4{ 
+    margin: 0.2rem;
+}
+
+.entry h2 {
+    font-size: 1rem;
+}
+
+.entry h3 {
+    font-size: 0.9rem;
+    color: var(--nav-fade);
+    line-height: 0.8rem;
+    margin-left: 0px;
+
+}
+.entry h4 {
+    font-size: 0.9rem;
+    display: inline;
+    padding-right: -0.5rem;
+    color: var(--nav-fade);
+    line-height: 0.8rem;
+    margin-right: 0px;
+}
+
+.entry h4::after {
+    content: '•';
+    margin: 0.5rem;
+    color: rgba(14, 158, 84, 0.8);
+}
+.school-and-year {
+    display: flex;
+}
+
+.languages {
+    display: flex; 
+    flex-wrap: wrap;
+}
+
+#about {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+}
+
+#about p {
+    color: var(--nav-fade);
+    font-size: 1.08rem;
+    margin-bottom: 0px;
+}
+
+#work-experience .entry p {
+    font-size: 0.6rem;
+}
