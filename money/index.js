@@ -120,6 +120,7 @@ const main = () => {
             const element = outgoings[i];
             setup(element.name, element.amount, element.id);
         }
+        document.getElementById('takeHome').value = salary;
         show();
         updateFields();
     }
