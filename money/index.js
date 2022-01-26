@@ -127,7 +127,7 @@ const main = () => {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    
+    main();
 
     document.getElementById("add").addEventListener("click", add);
 });
