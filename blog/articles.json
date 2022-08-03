@@ -1,6 +1,17 @@
 {
     "articles": [
         {
+            "headline": "Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)",
+            "summary": "A Flow to extract Query Params form URLs",
+            "link": "/blog/power-automate/url-query-params.html",
+            "date": 1659520635,
+            "tags": [
+                "Power Automate",
+                "MS Flow",
+                "Power Platform"
+            ]
+        },
+        {
             "headline": "Advent of Code Day #21",
             "summary": "Day Twenty One: Allergen Assessment | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-21.html",
