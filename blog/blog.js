@@ -75,7 +75,8 @@ function createBlog (data, delay) {
          let local = tagTemplate.replace("!{tag}!", "cpp"); 
          tagHTML += local.replace("!{tag}!", "c++"); 
       }else{
-        tagHTML += replaceAll(tagTemplate, "!{tag}!", tag);
+        let local = tagTemplate.replace("!{tag}!", tag.replace(' ', '_')); 
+        tagHTML += local.replace("!{tag}!", tag); 
       }
       
     }

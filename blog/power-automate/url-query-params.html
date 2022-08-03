@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+
+<head>
+    <script data-ad-client="ca-pub-1254309748341319" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "TechArticle",
+        "headline": "Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)",
+        "datePublished": "2022-08-03",
+        "author": {
+          "@type": "Person",
+          "name": "Joe Pitts",
+          "additionalName": "David",
+          "affiliation": "TrueNorthIT",
+          "jobTitle": "Solutions Developer",
+          "url": "https://JoePitts.co.uk",
+          "sameAs": [
+            "https://www.facebook.com/Joe.Pittsy",
+            "https://www.linkedin.com/in/JoePittsy",
+            "https://twitter.com/JoePittsy",
+            "https://www.instagram.com/JoePittsy/",
+            "https://github.com/JoePittsy"
+          ]
+        },
+        "description": "A Flow to extract Query Params form URLs",
+        "image": "https://joepitts.co.uk/resources/images/powerautomate.png"
+   
+      }
+    </script>
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JoePittsy" />
+    <meta name="twitter:description" content="A Flow to extract Query Params form URLs!"
+        name="description" />
+    <meta name="twitter:title" content="Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)" />
+    <meta name="twitter:creator" content="@JoePittsy" />
+    <meta property="og:image" content="https://joepitts.co.uk/resources/images/powerautomate.png" />
+
+    <meta property="og:title" content="Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)" />
+    <meta property="og:description" content="A Flow to extract Query Params form URLs!" />
+    <meta property="og:url" content="https://joepitts.co.uk/blog/power-automate/url-query-params.html" />
+    <meta name="author" content="Joe Pitts" />
+
+    <meta name="twitter:image" content="https://joepitts.co.uk/resources/images/powerautomate.png" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114382787-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "UA-114382787-2");
+    </script>
+    <script src="/js/darkMode.js" type="text/javascript"></script>
+    <script src="/js/clipboard.min.js"></script>
+    <link href="/resources/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/resources/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="/resources/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/resources/site.webmanifest" rel="manifest" />
+    <link href="/resources/safari-pinned-tab.svg" rel="mask-icon" />
+    <meta content="#da532c" name="msapplication-TileColor" />
+    <meta content="#ffffff" name="theme-color" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <meta content="Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)" name="description" />
+    <meta lang="en-gb" />
+    <noscript>
+        <style>
+            .jsonly {
+                display: none
+            }
+        </style>
+    </noscript>
+</head>
+
+<body link="black" style="height: auto;">
+    <div class="content" id="content">
+        <header>
+            <div id="container">
+                <div id="header">
+                    <img alt="Joe Pitts" id="logo" src="/resources/JoePitts.jpg" title="Joe Pitts" width="10%" />
+                    <!-- <a href="/" id="title">
+                    <p>Joe Pitts</p>
+                  </a> -->
+                    <nav id="normalMenu">
+                        <ul class="menu">
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/blog" id="currentPage">Blog</a>
+                            </li>
+                            <li>
+                                <a href="/work.html">My Work</a>
+                            </li>
+                            <li>
+                                <a href="/games/">Games</a>
+                            </li>
+                            <li id="darkItem">
+                                <img class="toggleDark" onclick="toggleNightMode()" src="/resources/moon.svg">
+                                <!-- <a class="toggleDark" onclick="toggleNightMode();">Dark Mode</a> -->
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <hr />
+        <div class="blogPost">
+            <h1>Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)</h1>
+            <span id="readingTime">
+                <date>3rd of August 2022</date> |
+                <p>2-3 minutes</p>
+            </span>
+            <a class="anchor" href="#introduction">
+                <h2 id="introduction">Introduction</h2>
+            </a>
+            <p>
+                Power Automate only provides an expresion for extracting the query string from a url, it basicly just
+                splits on the '?'.<br>
+                The flow shown in this blogpost extracts all query paramaters into a Key:Value JSON
+                object.
+            </p>
+
+            <a class="anchor" href="#example    ">
+                <h2 id="one">Example</h2>
+            </a>
+            <p>
+                Taking the following URL as input: <br>
+                <b>https://myapp.crm11.dynamics.com/main.aspx?appid=ca6fb934-ad35-49dc-a305-abc65d338b6f&forceUCI=1&pagetype=entityrecord&etn=jp_myentity&id=0634c174-b9d7-4ff9-bb59-c969505aefee</b><br>
+                The flow returns the following JSON object.
+            </p>
+
+            <div class="codeSnippet">
+                <div class="double-val-label">
+                    <span class="js">JSON</span>
+                </div>
+                <pre id="jsonOutput">
+{
+    "appid": "ca6fb934-ad35-49dc-a305-abc65d338b6f",
+    "pagetype": "entityrecord",
+    "etn": "jp_myentity",
+    "id": "0634c174-b9d7-4ff9-bb59-c969505aefee"
+}        </pre>
+            </div>
+
+
+
+            <a class="anchor" href="#the_flow">
+                <h2 id="two">The Flow</h2>
+            </a>
+            <picture id="wireImage">
+                <source srcset="/resources/images/query_param_flow.png" type="image/png" />
+                <img style="width: 25% !important" src="/resources/images/query_param_flow.png" />
+                <figcaption><small>Screenshot of the Flow.</small></figcaption>
+            </picture>
+
+            <a class="anchor" href="#how_to_use">
+                <h2 id="how_to_use">Using the Flow</h2>
+            </a>
+            <p>
+                The flow depends on two input variables, a URL Input and a Object to store the output. You must create these first then using the input boxes below update the flow to use your variables.
+            </p>
+
+            <p>
+                To add this flow to your own click the copy button on the code code snippet.<br>
+                Then go into your flow, click add step, go into 'My Clipboard' and press Ctrl+V, the flow should then be
+                shown for you to paste it.
+            <div></div>
+            <picture id="wireImage">
+                <source srcset="/resources/images/query_param_flow_paste.png" type="image/png" />
+                <img style="width: 65% !important" src="/resources/images/query_param_flow_paste.png" />
+                <figcaption><small>The pasted flow.</small></figcaption>
+            </picture>
+            </p>
+
+
+            <div>
+                <label for="URLVar">URL Variable:</label>
+                <input type="text" id="URLVar" name="URLVar" value="JP:URL_Input"> 
+
+                <label for="OutVar">Output Variable:</label>
+                <input type="text" id="OutVar" name="OutVar" value="JP:URL_Params"> 
+
+                <script>
+                    let updateFlow = () => {
+                        let newURL = document.getElementById('URLVar').value;
+                        let newOUT = document.getElementById('OutVar').value;
+
+                        let oldHTML = document.getElementById('getFlow').innerHTML;
+                        document.getElementById('getFlow').innerHTML =  oldHTML.replace('JP:URL_Input', newURL).replace('JP:URL_Params', newOUT)
+                    }
+                </script>
+
+                <button onclick="updateFlow()" >Update Flow</button>
+            </div>
+
+            <div class="codeSnippet">
+                <div class="double-val-label">
+                    <span class="js">JSON</span>
+                    <span data-clipboard-target="#getFlow" id="flowCopy">Copy</span>
+                </div>
+                <pre id="getFlow" spellcheck="false"><div style="color: #383a42;font-family: 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';font-weight: normal;font-size: 15px;line-height: 20px;white-space: pre;" spellcheck="false" contenteditable="false"><div style="color: #000000;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #000000;">{</span></div><div><span style="color: #000000;">&nbsp; &nbsp; </span><span style="color: #0451a5;">"id"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"96196740-50ad-4fd9-83fa-22f52f8b7a2d"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; </span><span style="color: #0451a5;">"brandColor"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"#8C3900"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; </span><span style="color: #0451a5;">"connectionReferences"</span><span style="color: #000000;">: {},</span></div><div><span style="color: #000000;">&nbsp; &nbsp; </span><span style="color: #0451a5;">"connectorDisplayName"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Control"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; </span><span style="color: #0451a5;">"icon"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KIDxwYXRoIGQ9Im0wIDBoMzJ2MzJoLTMyeiIgZmlsbD0iIzhDMzkwMCIvPg0KIDxwYXRoIGQ9Im04IDEwaDE2djEyaC0xNnptMTUgMTF2LTEwaC0xNHYxMHptLTItOHY2aC0xMHYJPnptLTEgNXYJPGgtOHY0eiIgZmlsbD0iI2ZmZiIvPg0KPC9zdmc+DQo="</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; </span><span style="color: #0451a5;">"isTrigger"</span><span style="color: #000000;">: </span><span style="color: #0000ff;">false</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; </span><span style="color: #0451a5;">"operationName"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Return_URL_query_params_as_a_JSON_K:V_Object"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; </span><span style="color: #0451a5;">"operationDefinition"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Scope"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"actions"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Get_Query_Param_String"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Compose"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"inputs"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@uriQuery(variables('JP:URL_Input'))"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {},</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"dce0f493-0727-4af5-b951-426d43d6a921"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Remove_the_leading_Question_Mark"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Expression"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"kind"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Substring"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"inputs"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"text"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@outputs('JP:Get_Query_Param_String')"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"startingPosition"</span><span style="color: #000000;">: </span><span style="color: #098658;">1</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Get_Query_Param_String"</span><span style="color: #000000;">: [</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #a31515;">"Succeeded"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"9bc8cdb3-420c-4d21-a3b7-a79dfd34572e"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Split_on_Ampersand"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Compose"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"inputs"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@split(outputs('JP:Remove_the_leading_Question_Mark')?['body'], '&amp;')"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Remove_the_leading_Question_Mark"</span><span style="color: #000000;">: [</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #a31515;">"Succeeded"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"1aa1fe0b-27da-453e-ab65-bd776ecf2bd1"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:For_each_K:V_String"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Foreach"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"foreach"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@outputs('JP:Split_on_Ampersand')"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"actions"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Split_name_and_Value"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Compose"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"inputs"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@split(items('JP:For_each_K:V_String'), '=')"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {},</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"76f1df63-598d-4d1a-9afe-f53910815346"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:ID"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Compose"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"inputs"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@first(outputs('JP:Split_name_and_Value'))"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Split_name_and_Value"</span><span style="color: #000000;">: [</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #a31515;">"Succeeded"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"0cd2cf95-fad6-4f4c-aa5d-6f4aee691404"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Value"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Compose"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"inputs"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@last(outputs('JP:Split_name_and_Value'))"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:ID"</span><span style="color: #000000;">: [</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #a31515;">"Succeeded"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"8ec6587b-07dc-41a4-9887-25f33c5de226"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Write_KV_to_Output"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"SetVariable"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"inputs"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"name"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"JP:URL_Params"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"value"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@outputs('JP:Temp_Output')"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Temp_Output"</span><span style="color: #000000;">: [</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #a31515;">"Succeeded"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"be06a384-e591-45da-9648-13d7eb415b45"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Temp_Output"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"type"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"Compose"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"inputs"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"@union(addProperty(variables('JP:URL_Params'), outputs('JP:ID'), outputs('JP:Value')), variables('JP:URL_Params'))"</span><span style="color: #000000;">,</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Value"</span><span style="color: #000000;">: [</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #a31515;">"Succeeded"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"9322affc-f966-470d-9c2e-993e3385d7ed"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:Split_on_Ampersand"</span><span style="color: #000000;">: [</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #a31515;">"Succeeded"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runtimeConfiguration"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"concurrency"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"repetitions"</span><span style="color: #000000;">: </span><span style="color: #098658;">1</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"8f7afbb7-6321-4814-86ca-1ed388dadcb0"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"runAfter"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"JP:K:V_URL_Params_Output"</span><span style="color: #000000;">: [</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #a31515;">"Succeeded"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; },</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"metadata"</span><span style="color: #000000;">: {</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #0451a5;">"operationMetadataId"</span><span style="color: #000000;">: </span><span style="color: #a31515;">"90cddcb4-7429-4a63-8dd2-5ef3cdd9d545"</span></div><div><span style="color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; }</span></div><div><span style="color: #000000;">&nbsp; &nbsp; }</span></div><div><span style="color: #000000;">}</span></div></div></pre>
+            </div>
+
+           
+        <p></p>
+        <div id="disqus_thread"></div>
+        <script>
+            (function () {
+                // DON'T EDIT BELOW THIS LINEx
+                var d = document,
+                    s = d.createElement("script");
+                s.src = "https://joepitts-co-uk.disqus.com/embed.js";
+                s.setAttribute("data-timestamp", +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    <div class="footer">
+        <ul class="footerContainer">
+            <li>
+                <p id="copyright">Copyright © 2018-2022, Joe Pitts. All rights reserved.</p>
+            </li>
+            <a href="https://www.linkedin.com/in/joepittsy"><img class="footerLogo" src="../resources/ln.svg"></a>
+            <a href="https://github.com/JoePittsy">
+                <li><img class="footerLogo" src="../resources/github.svg"></li>
+            </a>
+            <a href="https://twitter.com/JoePittsy">
+                <li><img class="footerLogo" src="../resources/twitter.svg"></li>
+            </a>
+        </ul>
+
+        <div class="mobileFooterContainer">
+            <p id="copyright">Copyright © 2018-2022, Joe Pitts. All rights reserved.</p>
+            <div class="mobileFooter">
+                <a href="https://www.linkedin.com/in/joepittsy"><img class="footerLogo" src="../resources/ln.svg"></a>
+                <a href="https://github.com/JoePittsy"><img class="footerLogo" src="../resources/github.svg"></a>
+                <a href="https://twitter.com/JoePittsy"><img class="footerLogo" src="../resources/twitter.svg"></a>
+            </div>
+        </div>
+        <script defer>
+            (function () {
+                new ClipboardJS("#dataCopy, #flowCopy, #twoCopy");
+            })();
+        </script>
+</body>
+
+</html>
