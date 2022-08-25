@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Colour Picker</title>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.7.1.2.min.js"></script>
+    <script src="index.js"></script>
+    <link href="index.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    <h1>LED Colour Picker</h1>
+
+    <div id="picker"></div>
+
+    <form>
+    <div class="container">
+        <div id="colA">
+            <label>
+                <input type="radio" name="radio" id="solid" checked />
+                <span>Solid Light</span>
+            </label>
+            <label>
+                <input type="radio" name="radio" id="chase" />
+                <span>Chase</span>
+            </label>
+
+        </div>
+
+        <div id="colB">
+            <label>
+                <input type="radio" name="radio" id="boom" />
+                <span>Explosion</span>
+            </label>
+            <label>
+                <input type="radio" name="radio" id="pulse" />
+                <span>Pulse</span>
+            </label>
+
+        </div>
+    </form>
+
+
+        
+    </div>
+
+    <h3 id="updateLabel">Update Interval: 25 Seconds</h3>
+    <input id="updateInterval" type="range" min="1" max="300" value="25" oninput="intervalChange(this.value)">
+
+    <button class="button-82-pushable" role="button" onclick="publishMessage()">
+        <span class="button-82-shadow"></span>
+        <span class="button-82-edge"></span>
+        <span class="button-82-front text">
+            Update LEDs
+        </span>
+    </button>
+</body>
+
+</html>
