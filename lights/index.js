@@ -1,6 +1,6 @@
 
 let pubnub;
-let interval = 25;
+let interval = 5;
 let mode; 
 let rgbObj;
 
@@ -37,6 +37,7 @@ let main = () => {
 
   colorPicker.on(["color:init", "color:change"], function (color) {
     rgbObj = color.rgb;
+    document.getElementById("DEBUG").innerHTML = JSON.stringify(rgbObj);
     console.log(rgbObj)
   });
 
