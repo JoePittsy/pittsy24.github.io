@@ -85,7 +85,10 @@ const publishMessage = async () => {
         interval: interval
       }
   };
-  await pubnub.publish(publishPayload);
+  pubnub.publish(publishPayload).then(result => {
+    alert("Updated!")
+  })
+  
 }
 
 
