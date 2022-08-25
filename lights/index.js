@@ -37,9 +37,7 @@ let main = () => {
 
   colorPicker.on(["color:init", "color:change"], function (color) {
     rgbObj = color.rgb;
-    r.value = color.rgb.r;
-    g.value = color.rgb.g;
-    b.value = color.rgb.b;
+    console.log(rgbObj)
   });
 
   hexInput.addEventListener('change', function () {
@@ -86,6 +84,7 @@ const publishMessage = async () => {
       }
   };
   pubnub.publish(publishPayload).then(result => {
+    // console.log("Done")
     alert("Updated!")
   })
   

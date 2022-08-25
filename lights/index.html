@@ -43,7 +43,7 @@
                 </label>
                 <label>
                     <input type="radio" name="radio" id="pulse" />
-                    <span>Pulse</span>
+                    <span>Breathe</span>
                 </label>
 
             </div>
@@ -54,7 +54,7 @@
     </div>
 
     <h3 id="updateLabel">Update Interval: 25 Seconds</h3>
-    <input id="updateInterval" type="range" min="1" max="300" value="25" oninput="intervalChange(this.value)">
+    <input id="updateInterval" type="range" min="0" max="60" value="5" oninput="intervalChange(this.value)">
 
     <button class="button-82-pushable" role="button" onclick="publishMessage()">
         <span class="button-82-shadow"></span>
