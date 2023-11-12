@@ -1,72 +1,177 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://joepitts.co.uk/</loc>
-  <lastmod>2020-06-28T20:27:34+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/work.html</loc>
-  <lastmod>2020-06-28T20:27:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/instagram.html</loc>
-  <lastmod>2020-06-28T20:27:34+00:00</lastmod>
-  <priority>0.60</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/blog/</loc>
-  <lastmod>2020-06-28T20:27:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/blog/guide-for-using-ws2812b-led-strips-with-mxchip.html</loc>
-  <lastmod>2020-08-25T16:01:27+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/blog/guide-for-using-ws2812b-led-strips-with-mxchip.html</loc>
-  <lastmod>2020-08-25T16:01:27+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/blog/power-automate/url-query-params.html</loc>
-  <lastmod>2022-08-03T12:19:27+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/blog/advent-of-code-day-01.html</loc>
-  <lastmod>2020-12-01T16:01:27+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/blog/advent-of-code-day-02.html</loc>
-  <lastmod>2020-12-02T16:01:27+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/games/</loc>
-  <lastmod>2020-08-25T16:01:27+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/games/ttt.html</loc>
-  <lastmod>2020-08-25T16:01:27+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joepitts.co.uk/resources/Joe-Pitts-CV.pdf</loc>
-  <lastmod>2020-06-28T20:27:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-
+<?xml version='1.0' encoding='utf-8'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://joepitts.co.uk/</loc>
+    <lastmod>2020-06-28T20:27:34+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://joepitts.co.uk/work.html</loc>
+    <lastmod>2020-06-28T20:27:34+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://joepitts.co.uk/instagram.html</loc>
+    <lastmod>2020-06-28T20:27:34+00:00</lastmod>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://joepitts.co.uk/games/</loc>
+    <lastmod>2020-08-25T16:01:27+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://joepitts.co.uk/games/ttt.html</loc>
+    <lastmod>2020-08-25T16:01:27+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://joepitts.co.uk/resources/Joe-Pitts-CV.pdf</loc>
+    <lastmod>2020-06-28T20:27:34+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/power-automate/url-query-params.html</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-21.html</loc>
+    <lastmod>2020-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-19.html</loc>
+    <lastmod>2020-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-18.html</loc>
+    <lastmod>2020-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-17.html</loc>
+    <lastmod>2020-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-16.html</loc>
+    <lastmod>2020-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-15.html</loc>
+    <lastmod>2020-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-14.html</loc>
+    <lastmod>2020-12-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-13.html</loc>
+    <lastmod>2020-12-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-12.html</loc>
+    <lastmod>2020-12-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-11.html</loc>
+    <lastmod>2020-12-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-10.html</loc>
+    <lastmod>2020-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/creating-a-light-alarm-clock-with-azure.html</loc>
+    <lastmod>2020-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-09.html</loc>
+    <lastmod>2020-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-08.html</loc>
+    <lastmod>2020-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-07.html</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-06.html</loc>
+    <lastmod>2020-12-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-05.html</loc>
+    <lastmod>2020-12-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-04.html</loc>
+    <lastmod>2020-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-03.html</loc>
+    <lastmod>2020-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-02.html</loc>
+    <lastmod>2020-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-01.html</loc>
+    <lastmod>2020-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/guide-for-using-ws2812b-led-strips-with-mxchip.html</loc>
+    <lastmod>2020-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/create-automatic-display-rotation-with-mxchip.html</loc>
+    <lastmod>2020-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
