@@ -1032,6 +1032,23 @@ h1>input[type="text"]{
     text-decoration: underline;
     color: var(--heading-colour);
 }
+#filterBox {
+  margin-bottom: 20px;
+}
+
+.tag-filter {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  text-transform: uppercase;
+  border: 0;
+}
+
+.tag-filter:hover {
+  background-color: #e0e0e0;
+}
 @keyframes slideInFromLeft {
   0% {
     opacity: 0;

@@ -1,6 +1,15 @@
 {
     "articles": [
         {
+            "headline": "Test Markdown Blog!",
+            "summary": "Generating Blog Posts from Markdown",
+            "link": "/blog/test/newPost.html",
+            "date": 1699747200.0,
+            "tags": [
+                "Python"
+            ]
+        },
+        {
             "headline": "Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)",
             "summary": "A Flow to extract Query Params form URLs",
             "link": "/blog/power-automate/url-query-params.html",
