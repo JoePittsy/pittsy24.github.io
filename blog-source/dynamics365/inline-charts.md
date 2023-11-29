@@ -67,3 +67,4 @@ The real strength of these form-level charts lies in their flexibility: users ca
 
 For example, sales teams can greatly benefit from this feature. Embedded charts on forms can track individual or team performance metrics. Imagine a chart displaying monthly sales totals. Users can not only switch views to compare different product lines or regions but also adjust the time frame of the data displayed via the view switcher, whether it's the last 3, 6, 9 months, or any other period. This adaptability transforms forms into dynamic tools for real-time performance tracking.
 
+The key take away is the rowspan property in the XML, with it charts become a viable and valuable addition to your Dynamics365 Forms!
