@@ -1,6 +1,15 @@
 {
     "articles": [
         {
+            "headline": "Enhancing Dynamics 365 Forms: In-Line Charts in all shapes and sizes!",
+            "summary": "Explore the integration of in-line charts in Dynamics 365 forms to elevate data visualization. This post covers how to embed charts but most importantly, adjusting their size",
+            "link": "/blog/dynamics365/inline-charts.html",
+            "date": 1699747200.0,
+            "tags": [
+                "Dynamics365"
+            ]
+        },
+        {
             "headline": "Extract URL Query Paramters to Key:Value JSON in Power Automate (MS Flow)",
             "summary": "A Flow to extract Query Params form URLs",
             "link": "/blog/power-automate/url-query-params.html",

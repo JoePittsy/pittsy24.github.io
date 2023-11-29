@@ -162,7 +162,7 @@ h3 {
   width: 90%;
 }
 
-.blog-container:hover .blog-title h1 a {
+.blog-container:hover.blog-title h1 a {
   color: var(--link-unvisited);
 }
 .blog-title h1 a {
@@ -245,6 +245,21 @@ h3 {
 
 .advent{
   background-color: #B3000C !important;
+  color: #fff !important;
+}
+
+.dynamics365 { 
+  background-color: #5e51ab !important;
+  color: #fff !important;
+}
+
+.xml {
+  background-color: #0060a3 !important;
+  color: #fff !important;
+}
+
+.csharp {
+  background-color: #512bd4 !important;
   color: #fff !important;
 }
 
@@ -1007,11 +1022,11 @@ small {
 }
 
   
-#workCardContainer .blog-container {
+#workCardContainer.blog-container {
   opacity: 0;
 }
 
-#workCardContainer .blog-container:nth-of-type(n) {
+#workCardContainer.blog-container:nth-of-type(n) {
   --index: 0;
   animation: 0.4s ease-in-out 0s 1 slideInFromLeft forwards;
   animation-delay: calc(200ms * var(--index));

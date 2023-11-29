@@ -119,9 +119,9 @@ def estimate_reading_time(markdown_content):
     words = text.split()
     word_count = len(words)
 
-    # Estimate reading time (200-250 wpm)
-    min_time = word_count // 250
-    max_time = word_count // 200
+    # Estimate reading time 
+    min_time = word_count // 120
+    max_time = word_count // 70
 
     # Adjust for a more human-readable format
     if min_time == max_time:

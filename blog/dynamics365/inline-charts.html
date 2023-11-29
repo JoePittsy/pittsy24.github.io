@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+ <head>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@JoePittsy" name="twitter:site"/>
+  <meta content="Explore the integration of in-line charts in Dynamics 365 forms to elevate data visualization. This post covers how to embed charts but most importantly, adjusting their size" name="twitter:description"/>
+  <meta content="Joe Pitts | Enhancing Dynamics 365 Forms: In-Line Charts in all shapes and sizes!" name="twitter:title"/>
+  <meta content="@JoePittsy" name="twitter:creator"/>
+  <meta content="Enhancing Dynamics 365 Forms: In-Line Charts in all shapes and sizes!" property="og:title"/>
+  <meta content="Explore the integration of in-line charts in Dynamics 365 forms to elevate data visualization. This post covers how to embed charts but most importantly, adjusting their size" property="og:description"/>
+  <meta content="https://joepitts.co.uk./blog/dynamics365/inline-charts.html" property="og:url"/>
+  <meta content="Joe Pitts" name="author"/>
+  <title>
+   Enhancing Dynamics 365 Forms: In-Line Charts in all shapes and sizes!
+  </title>
+  <meta content="Explore the integration of in-line charts in Dynamics 365 forms to elevate data visualization. This post covers how to embed charts but most importantly, adjusting their size" name="description"/>
+  <script src="/js/darkMode.js" type="text/javascript">
+  </script>
+  <script src="/js/clipboard.min.js">
+  </script>
+  <link href="/resources/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/resources/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/resources/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/resources/site.webmanifest" rel="manifest"/>
+  <link href="/resources/safari-pinned-tab.svg" rel="mask-icon"/>
+  <meta content="#da532c" name="msapplication-TileColor"/>
+  <meta content="#ffffff" name="theme-color"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/blog.css" rel="stylesheet" type="text/css"/>
+  <link href="/style.css" rel="stylesheet" type="text/css"/>
+  <link href="/code_styles.css" rel="stylesheet" type="text/css"/>
+  <meta lang="en-gb"/>
+  <noscript>
+   <style>
+    .jsonly {
+                display: none
+            }
+   </style>
+  </noscript>
+  <script type="application/ld+json">
+   {
+    "@context": "http://schema.org",
+    "@type": "TechArticle",
+    "headline": "Enhancing Dynamics 365 Forms: In-Line Charts in all shapes and sizes!",
+    "description": "Explore the integration of in-line charts in Dynamics 365 forms to elevate data visualization. This post covers how to embed charts but most importantly, adjusting their size",
+    "datePublished": "2023-11-12",
+    "author": {
+        "@type": "Person",
+        "name": "Joe Pitts",
+        "additionalName": "David",
+        "affiliation": "TrueNorthIT",
+        "jobTitle": "Solutions Developer",
+        "url": "https://JoePitts.co.uk",
+        "sameAs": [
+            "https://www.facebook.com/Joe.Pittsy",
+            "https://www.linkedin.com/in/JoePittsy",
+            "https://twitter.com/JoePittsy",
+            "https://www.instagram.com/JoePittsy/"
+        ]
+    },
+    "keywords": "Dynamics365"
+}
+  </script>
+ </head>
+ <body link="black" style="height: auto;">
+  <div class="content" id="content">
+   <header>
+    <div id="container">
+     <div id="header">
+      <img alt="Joe Pitts" id="logo" src="/resources/JoePitts.jpg" title="Joe Pitts" width="10%"/>
+      <nav id="normalMenu">
+       <ul class="menu">
+        <li>
+         <a href="/">
+          Home
+         </a>
+        </li>
+        <li>
+         <a href="/blog" id="currentPage">
+          Blog
+         </a>
+        </li>
+        <li>
+         <a href="/work.html">
+          My Work
+         </a>
+        </li>
+        <li>
+         <a href="/games/">
+          Games
+         </a>
+        </li>
+        <li id="darkItem">
+         <img class="toggleDark" onclick="toggleNightMode()" src="/resources/moon.svg"/>
+        </li>
+       </ul>
+      </nav>
+     </div>
+    </div>
+   </header>
+   <hr/>
+   <div class="blogPost">
+    <span id="titleAndReadingTime">
+     <h1 id="blogPostTitle">
+      Enhancing Dynamics 365 Forms: In-Line Charts in all shapes and sizes!
+     </h1>
+     <span id="readingTime">
+      <date id="publicationDate">
+       12 November 2023
+      </date>
+      |
+      <p id="estimatedReadingTime">
+       3-5 Minutes
+      </p>
+     </span>
+    </span>
+    <article id="blogPostContent">
+     <p>
+      <a class="anchor" href="#how_to_embed_a_chart">
+       <h2 id="how_to_embed_a_chart">
+        How to embed a Chart
+       </h2>
+      </a>
+     </p>
+     <p>
+      Many are familiar with displaying charts alongside grids in Dynamics 365, but a lesser-known feature allows you to just show the chart in a form.
+     </p>
+     <p>
+      Achieving this is straightforward in the new form editor. Simply choose your subgrid and activate the 'Show Chart Only' checkbox. For added flexibility, you can enable the 'Allow users to change chart' option.
+     </p>
+     <p>
+      <img alt="Show Chart Only - Form Editor" src="/resources/images/dynamics365/inline-charts/show-chart-only.png" title="Show Chart Only - Form Editor"/>
+     </p>
+     <p>
+      This takes our from from drab to slightly less drab... 
+The potential is there but the default chart size somewhat limits it's practicality.
+     </p>
+     <p>
+      <img alt="Subgrid to Chart" src="/resources/images/dynamics365/inline-charts/before-after.png" title="Subgrid to Chart"/>
+     </p>
+     <p>
+      Now, you might wonder, how can we resize this chart for better usability?
+     </p>
+     <p>
+      <a class="anchor" href="#resizing_form_embedded_charts">
+       <h2 id="resizing_form_embedded_charts">
+        Resizing form embedded charts
+       </h2>
+      </a>
+     </p>
+     <p>
+      Now we have successfully surfaced a chart on our form it's only reasonable for us to want to resize it. Unfortunately this is not as easy as one could hope.
+     </p>
+     <p>
+      One might assume that increasing the 'Maximum number of rows' property on the subgrid would do the trick. This was a valid approach back in 2016, and recommended by the
+      <a href="https://crmchartguy.wordpress.com/2016/01/24/charts-on-forms-or-useraccount-specific-dashboards/">
+       CRM Chart Guy
+      </a>
+      . But as of December 2023, this method no longer impacts the chart size, and neither does the 'Use available space' option.
+     </p>
+     <p>
+      Fortunately, I have discovered a solution: editing the form XML, a method officially
+      <a href="https://learn.microsoft.com/en-us/power-apps/developer/data-platform/supported-customizations#solution-file">
+       supported
+      </a>
+      for customization. The crucial step is altering the `rowspan`` property. The most efficient tool I have found for this task is the
+      <a href="https://www.xrmtoolbox.com/plugins/ITLec.FormXmlManager/">
+       Form XML Manager
+      </a>
+      in XrmToolbox. It enables editing and rapid republishing of the XML, allowing for experimentation with different rowspan values to achieve the desired chart size.
+     </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="xml">
+        XML
+       </span>
+       <span data-clipboard-target="#code-feabd2f1c7dc417282ccea927a7a421b" id="code-feabd2f1c7dc417282ccea927a7a421b-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-feabd2f1c7dc417282ccea927a7a421b"><span></span><code><span class="nt">&lt;cell</span><span class="w"> </span><span class="na">locklevel=</span><span class="s">"0"</span><span class="w"> </span><span class="na">id=</span><span class="s">"{6787823b-9029-4777-a933-764e726edf4a}"</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">"8"</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"1"</span><span class="w"> </span><span class="na">auto=</span><span class="s">"true"</span>
+<span class="w">    </span><span class="na">showlabel=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;labels&gt;</span>
+<span class="w">        </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">description=</span><span class="s">"Home vs Away Total Savings"</span><span class="w"> </span><span class="na">languagecode=</span><span class="s">"1033"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/labels&gt;</span>
+<span class="w">    </span><span class="nt">&lt;control</span><span class="w"> </span><span class="na">indicationOfSubgrid=</span><span class="s">"true"</span><span class="w"> </span><span class="na">id=</span><span class="s">"Subgrid_new_2"</span>
+<span class="w">        </span><span class="na">classid=</span><span class="s">"{E7A81278-8635-4D9E-8D4D-59480B391C5B}"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;parameters&gt;</span>
+<span class="w">            </span><span class="nt">&lt;RecordsPerPage&gt;</span>250<span class="nt">&lt;/RecordsPerPage&gt;</span>
+<span class="w">            </span><span class="nt">&lt;AutoExpand&gt;</span>Auto<span class="nt">&lt;/AutoExpand&gt;</span>
+<span class="w">            </span><span class="nt">&lt;EnableQuickFind&gt;</span>false<span class="nt">&lt;/EnableQuickFind&gt;</span>
+<span class="w">            </span><span class="nt">&lt;EnableViewPicker&gt;</span>false<span class="nt">&lt;/EnableViewPicker&gt;</span>
+<span class="w">            </span><span class="nt">&lt;EnableChartPicker&gt;</span>true<span class="nt">&lt;/EnableChartPicker&gt;</span>
+<span class="w">            </span><span class="nt">&lt;ChartGridMode&gt;</span>Chart<span class="nt">&lt;/ChartGridMode&gt;</span>
+<span class="w">            </span><span class="nt">&lt;TargetEntityType&gt;</span>tn_visit<span class="nt">&lt;/TargetEntityType&gt;</span>
+<span class="w">            </span><span class="nt">&lt;ViewId&gt;</span>{02AF3A75-BF87-EE11-BE36-6045BDD0EDF1}<span class="nt">&lt;/ViewId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;ViewIds&gt;</span>{A95A8474-2567-4F84-B6B2-A09E9E52575A},{02AF3A75-BF87-EE11-BE36-6045BDD0EDF1}<span class="nt">&lt;/ViewIds&gt;</span>
+<span class="w">            </span><span class="nt">&lt;RelationshipName&gt;</span>tn_SavingsBatch_tn_SavingsBatch_tn_Visit<span class="nt">&lt;/RelationshipName&gt;</span>
+<span class="w">            </span><span class="nt">&lt;VisualizationId&gt;</span>{DE63F41E-C287-EE11-BE36-6045BDD27787}<span class="nt">&lt;/VisualizationId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/parameters&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/control&gt;</span>
+<span class="nt">&lt;/cell&gt;</span><span class="w"> </span>
+</code></pre>
+      </div>
+     </div>
+     <p>
+      Once we adjust the rowspan from 4 to 8, the true potential of charts on forms becomes evident.
+     </p>
+     <p>
+      <img alt="Big In-Line Chart" src="/resources/images/dynamics365/inline-charts/big-chart.png" title="Big In-Line Chart"/>
+     </p>
+     <p>
+      The real strength of these form-level charts lies in their flexibility: users can change both the data source view and the chart type.
+     </p>
+     <p>
+      For example, sales teams can greatly benefit from this feature. Embedded charts on forms can track individual or team performance metrics. Imagine a chart displaying monthly sales totals. Users can not only switch views to compare different product lines or regions but also adjust the time frame of the data displayed via the view switcher, whether it's the last 3, 6, 9 months, or any other period. This adaptability transforms forms into dynamic tools for real-time performance tracking.
+     </p>
+    </article>
+   </div>
+   <p>
+   </p>
+   <div id="disqus_thread">
+   </div>
+  </div>
+  <script>
+   (function () {
+            // DON'T EDIT BELOW THIS LINEx
+            var d = document,
+                s = d.createElement("script");
+            s.src = "https://joepitts-co-uk.disqus.com/embed.js";
+            s.setAttribute("data-timestamp", +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+  </script>
+  <noscript>
+   Please enable JavaScript to view the
+   <a href="https://disqus.com/?ref_noscript">
+    comments powered by Disqus.
+   </a>
+  </noscript>
+  <div class="footer">
+   <ul class="footerContainer">
+    <li>
+     <p id="copyright">
+      Copyright © 2018-2023, Joe Pitts. All rights reserved.
+     </p>
+    </li>
+    <a href="https://www.linkedin.com/in/joepittsy">
+     <img class="footerLogo" src="/resources/ln.svg"/>
+    </a>
+    <a href="https://github.com/JoePittsy">
+     <li>
+      <img class="footerLogo" src="/resources/github.svg"/>
+     </li>
+    </a>
+    <a href="https://twitter.com/JoePittsy">
+     <li>
+      <img class="footerLogo" src="/resources/twitter.svg"/>
+     </li>
+    </a>
+   </ul>
+   <div class="mobileFooterContainer">
+    <p id="copyright">
+     Copyright © 2018-2023, Joe Pitts. All rights reserved.
+    </p>
+    <div class="mobileFooter">
+     <a href="https://www.linkedin.com/in/joepittsy">
+      <img class="footerLogo" src="/resources/ln.svg"/>
+     </a>
+     <a href="https://github.com/JoePittsy">
+      <img class="footerLogo" src="/resources/github.svg"/>
+     </a>
+     <a href="https://twitter.com/JoePittsy">
+      <img class="footerLogo" src="/resources/twitter.svg"/>
+     </a>
+    </div>
+   </div>
+  </div>
+  <script defer="">
+   (function () {
+            // This should include all of the code snippets
+            new ClipboardJS("#code-feabd2f1c7dc417282ccea927a7a421b-btn");
+        })();
+  </script>
+ </body>
+</html>
