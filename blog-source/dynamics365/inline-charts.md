@@ -16,7 +16,7 @@ Achieving this is straightforward in the new form editor. Simply choose your sub
 ![Show Chart Only - Form Editor](/resources/images/dynamics365/inline-charts/show-chart-only.png "Show Chart Only - Form Editor")
 
 This takes our from from drab to slightly less drab... 
-The potential is there but the default chart size somewhat limits it's practicality.
+The potential is there but the default chart size somewhat limits its practicality.
 
 ![Subgrid to Chart](/resources/images/dynamics365/inline-charts/before-after.png "Subgrid to Chart")
 
