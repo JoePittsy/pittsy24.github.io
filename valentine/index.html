@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="bad.png" as="image" type="image/png" />
+    <title>Question 4 Hollie</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #ffdde1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .heart {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: red;
+            clip-path: path("M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z");
+            opacity: 0;
+            top: -10vh;
+            transform: scale(0.5);
+            animation: fadeGrow 1s ease-out forwards, fall linear infinite;
+        }
+        @keyframes fadeGrow {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 0.75;
+                transform: scale(1);
+            }
+        }
+        @keyframes fall {
+            from { transform: translateY(-10vh); }
+            to { transform: translateY(110vh); }
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            color: #d63384;
+        }
+        .slideshow {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            left: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slideshow img.active {
+            opacity: 1;
+        }
+        .button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            background-color: #d63384;
+        }
+
+        .fullscreen {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .endState h1 {
+            z-index: 10;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%);
+            width: 100vw;
+            background-color: black;
+            line-height: 2;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <audio id="background-music" loop autoplay>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="container">
+        <h1>Will You Be My Valentine? 💖</h1>
+        <div class="slideshow">
+            <img src="slideshow/slideshow (1).JPG" class="active" alt="Photo 1">
+            <img src="slideshow/slideshow (2).jpg" alt="Photo 2">
+            <img src="slideshow/slideshow (3).jpg" alt="Photo 3">
+            <img src="slideshow/slideshow (4).jpg" alt="Photo 4">
+            <img src="slideshow/slideshow (5).jpg" alt="Photo 5">
+            <img src="slideshow/slideshow (6).jpg" alt="Photo 6">
+            <img src="slideshow/slideshow (7).jpg" alt="Photo 7">
+            <img src="slideshow/slideshow (8).jpg" alt="Photo 8">
+            <img src="slideshow/slideshow (9).jpg" alt="Photo 9">
+            <img src="slideshow/slideshow (10).jpg" alt="Photo 10">
+            <img src="slideshow/slideshow (11).jpg" alt="Photo 11">
+            <img src="slideshow/slideshow (12).jpg" alt="Photo 12">
+            <img src="slideshow/slideshow (13).jpg" alt="Photo 13">
+            <img src="slideshow/slideshow (14).jpg" alt="Photo 14">
+        </div>
+        <button class="button" onclick="showLove()">Yes! 💕</button>
+        <button class="button" onclick="badMode()">No! 😢</button>
+    </div>
+
+    <div id="bad" class="endState" style="display: none;">
+        <h1>y u no luv daddy ;(</h1>
+        <img src="bad.png" alt="Bad image" class="fullscreen"> 
+    </div>
+
+    <div id="good" class="endState"  style="display: none;">
+        <h1>yipeeee, i luv mummy and daddy!  :)</h1>
+        <img src="good.png" alt="Bad image" class="fullscreen"> 
+    </div>
+    
+    
+    <script>
+
+        let makeNewHearts = true;
+
+        function badMode() {
+            makeNewHearts = false;
+            killAllHearts();
+            // document.body.style.backgroundColor = "#333";
+            document.querySelector(".container").style.display = "none";
+            document.getElementById("bad").style.display = "block";
+
+            // Change to bad music
+            document.getElementById("background-music").src = "bad_music.mp3";
+            document.getElementById("background-music").play();
+        }
+
+
+        function showLove() {
+            document.querySelector(".container").style.display = "none";
+            document.getElementById("good").style.display = "block";
+        }
+        function killAllHearts() {
+            let hearts = document.querySelectorAll(".heart");
+            hearts.forEach(heart => heart.remove());
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 8; i++) {
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 6000);
+            }
+        }
+        setInterval(() => {
+            if (makeNewHearts) {
+                createHearts();
+            }} , 500);
+
+        let slides = document.querySelectorAll(".slideshow img");
+        let index = 0;
+        function changeSlide() {
+            slides[index].classList.remove("active");
+            index = (index + 1) % slides.length;
+            slides[index].classList.add("active");
+        }
+        setInterval(changeSlide, 3000);
+        
+    
+    </script>
+</body>
+</html>
