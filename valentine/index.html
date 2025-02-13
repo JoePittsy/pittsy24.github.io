@@ -111,6 +111,13 @@
             text-align: center;
         }
 
+        #person-check {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
     </style>
 </head>
 <body>
@@ -118,7 +125,14 @@
         <source src="music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <div class="container">
+
+    <div id="person-check">
+        <h1>Are you Hollie Dalby?</h1>
+        <button class="button" onclick="enterSite()">Of course?</button>
+        <button class="button" onclick='window.location.replace("https:/\/www.google.com")'>Nope!</button>
+    </div>
+
+    <div class="container" style="display: none;">
         <h1>Will You Be My Valentine? 💖</h1>
         <div class="slideshow">
             <img src="slideshow/slideshow (1).JPG" class="active" alt="Photo 1">
@@ -153,7 +167,14 @@
     
     <script>
 
-        let makeNewHearts = true;
+        let makeNewHearts = false;
+        
+        function enterSite() {
+            document.querySelector(".container").style.display = "block"
+            document.getElementById("person-check").style.display ="none"
+            document.getElementById("background-music").play();
+            makeNewHearts = true;
+        }
 
         function badMode() {
             makeNewHearts = false;
