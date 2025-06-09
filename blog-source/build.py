@@ -60,6 +60,37 @@ class CodeBlockPreprocessor(Preprocessor):
                 new_lines.append(line)
         return new_lines
 
+
+class SnippetInjectionPreprocessor(Preprocessor):
+    def __init__(self, md, snippets_dir='blog-source/snippets'):
+        super().__init__(md)
+        self.snippets_dir = snippets_dir
+
+    def run(self, lines):
+        new_lines = []
+        snippet_pattern = re.compile(r'\{\{snippet:([^\}]+)\}\}')
+
+        for line in lines:
+            match = snippet_pattern.search(line)
+            while match:
+                snippet_filename = match.group(1).strip()
+                snippet_path = os.path.join(self.snippets_dir, snippet_filename)
+
+                if os.path.exists(snippet_path):
+                    with open(snippet_path, 'r') as f:
+                        snippet_content = f.read()
+                    line = line[:match.start()] + snippet_content + line[match.end():]
+                else:
+                    line = line[:match.start()] + f"<p>Snippet '{snippet_filename}' not found.</p>" + line[match.end():]
+
+                match = snippet_pattern.search(line)
+
+            new_lines.append(line)
+
+        return new_lines
+
+
+
 from bs4 import BeautifulSoup, Comment
 
 class CodeSnippetPostprocessor(Postprocessor):
@@ -106,6 +137,7 @@ class JoesExtension(Extension):
     def extendMarkdown(self, md):
         md.preprocessors.register(HeaderAnchorPreprocessor(md), 'custom_header', 175)
         md.preprocessors.register(CodeBlockPreprocessor(md), 'code_block', 25)
+        md.preprocessors.register(SnippetInjectionPreprocessor(md), 'snippet_injection', 20)
         md.postprocessors.register(CodeSnippetPostprocessor(md), 'code_snippet', 25)
 
 def estimate_reading_time(markdown_content):
@@ -167,6 +199,7 @@ def get_html_content_and_esitamated_reading_time(file: str):
 def create_html_file(yaml_config, html_content, reading_time):
     """Create the html file"""
     output_path = yaml_config["outputPath"]
+    social_image = yaml_config.get("socialImage", None)
     headline = yaml_config["headline"]
     summary = yaml_config["summary"]
     # Date is in the format: dd/mm/yyyy convert it to an epoch timestamp
@@ -232,6 +265,11 @@ def create_html_file(yaml_config, html_content, reading_time):
     soup.find("meta", {"property": "og:title"})["content"] = headline
     soup.find("meta", {"property": "og:description"})["content"] = summary
     soup.find("meta", {"property": "og:url"})["content"] = f"https://joepitts.co.uk{output_path}"
+    
+    if social_image:
+        soup.find("meta", {"property": "og:image"})["content"] = f"https://joepitts.co.uk{social_image}"
+        soup.find("meta", {"name": "twitter:image"})["content"] =  f"https://joepitts.co.uk{social_image}"
+
 
 
     # Set the title blogPostTitle
@@ -274,6 +312,20 @@ def create_html_file(yaml_config, html_content, reading_time):
     """
     soup.find("body").append(script)
 
+    # Add code snippet scripts to the head
+    snippet_scripts = yaml_config.get('snippetScripts', [])
+    print(f"Adding snippet scripts: {snippet_scripts}")
+    for script_file in snippet_scripts:
+        script_path = os.path.join('blog-source', 'snippets', script_file)
+        if os.path.exists(script_path):
+            with open(script_path, 'r') as f:
+                script_content = f.read()
+            script_tag = soup.new_tag('script', type='text/javascript')
+            script_tag.string = script_content
+            soup.find('head').append(script_tag)
+            print(f"Added snippet script: {script_file}")
+        else:
+            print(f"Warning: Snippet script '{script_file}' not found.")
 
     # Strip the filename from the output path
     output_folder_path = os.path.abspath(os.path.dirname(output_path))

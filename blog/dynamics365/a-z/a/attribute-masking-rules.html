@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+ <head>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@JoePittsy" name="twitter:site"/>
+  <meta content="Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples." name="twitter:description"/>
+  <meta content="Joe Pitts | Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE: From A-Z" name="twitter:title"/>
+  <meta content="@JoePittsy" name="twitter:creator"/>
+  <meta content="Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE: From A-Z" property="og:title"/>
+  <meta content="Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples." property="og:description"/>
+  <meta content="https://joepitts.co.uk./blog/dynamics365/a-z/a/attribute-masking-rules.html" property="og:url"/>
+  <meta content="Joe Pitts" name="author"/>
+  <meta content="https://joepitts.co.ukresources\images\dynamics365\attribute-masking\logo.png" property="og:image"/>
+  <meta content="https://joepitts.co.ukresources\images\dynamics365\attribute-masking\logo.png" name="twitter:image"/>
+  <title>
+   Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE: From A-Z
+  </title>
+  <meta content="Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples." name="description"/>
+  <script src="/js/darkMode.js" type="text/javascript">
+  </script>
+  <script src="/js/clipboard.min.js">
+  </script>
+  <link href="/resources/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/resources/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/resources/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/resources/site.webmanifest" rel="manifest"/>
+  <link href="/resources/safari-pinned-tab.svg" rel="mask-icon"/>
+  <meta content="#da532c" name="msapplication-TileColor"/>
+  <meta content="#ffffff" name="theme-color"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/blog.css" rel="stylesheet" type="text/css"/>
+  <link href="/style.css" rel="stylesheet" type="text/css"/>
+  <link href="/code_styles.css" rel="stylesheet" type="text/css"/>
+  <meta lang="en-gb"/>
+  <noscript>
+   <style>
+    .jsonly {
+                display: none
+            }
+   </style>
+  </noscript>
+  <script type="application/ld+json">
+   {
+    "@context": "http://schema.org",
+    "@type": "TechArticle",
+    "headline": "Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE: From A-Z",
+    "description": "Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples.",
+    "datePublished": "2025-05-09",
+    "author": {
+        "@type": "Person",
+        "name": "Joe Pitts",
+        "additionalName": "David",
+        "affiliation": "TrueNorthIT",
+        "jobTitle": "Solutions Developer",
+        "url": "https://JoePitts.co.uk",
+        "sameAs": [
+            "https://www.facebook.com/Joe.Pittsy",
+            "https://www.linkedin.com/in/JoePittsy",
+            "https://twitter.com/JoePittsy",
+            "https://www.instagram.com/JoePittsy/"
+        ]
+    },
+    "keywords": "Dynamics365 A-Z"
+}
+  </script>
+ </head>
+ <body link="black" style="height: auto;">
+  <div class="content" id="content">
+   <header>
+    <div id="container">
+     <div id="header">
+      <img alt="Joe Pitts" id="logo" src="/resources/JoePitts.jpg" title="Joe Pitts" width="10%"/>
+      <nav id="normalMenu">
+       <ul class="menu">
+        <li>
+         <a href="/">
+          Home
+         </a>
+        </li>
+        <li>
+         <a href="/blog" id="currentPage">
+          Blog
+         </a>
+        </li>
+        <li>
+         <a href="/work.html">
+          My Work
+         </a>
+        </li>
+        <li>
+         <a href="/games/">
+          Games
+         </a>
+        </li>
+        <li id="darkItem">
+         <img class="toggleDark" onclick="toggleNightMode()" src="/resources/moon.svg"/>
+        </li>
+       </ul>
+      </nav>
+     </div>
+    </div>
+   </header>
+   <hr/>
+   <div class="blogPost">
+    <span id="titleAndReadingTime">
+     <h1 id="blogPostTitle">
+      Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE: From A-Z
+     </h1>
+     <span id="readingTime">
+      <date id="publicationDate">
+       09 May 2025
+      </date>
+      |
+      <p id="estimatedReadingTime">
+       8-13 Minutes
+      </p>
+     </span>
+    </span>
+    <article id="blogPostContent">
+     <h3>
+      Disclaimer
+     </h3>
+     <p>
+      In true Microsoft fashion, we're kicking things off with a feature that's already had a name change! "Attribute Masking Columns" are now called "Secured Masking Columns". Great start to our A-Z series, huh? The schema name is still
+      <code>
+       attributemaskingrules
+      </code>
+      , though, so I'm sticking with it!
+     </p>
+     <p>
+      <a class="anchor" href="#what_are_they?">
+       <h2 id="what_are_they?">
+        What are they?
+       </h2>
+      </a>
+     </p>
+     <p>
+      Attribute/Secured Masking Columns let you mask specific portions of data based on a RegEx pattern.
+     </p>
+     <p>
+      Microsoft provides several built-in masking rules to get you started:
+     </p>
+     <ul>
+      <li>
+       <strong>
+        Date with Hyphen
+       </strong>
+       : Masks the year in date formats like MM-DD-YYYY, M-DD-YYYY, MM-D-YYYY, M-D-YYYY.
+      </li>
+      <li>
+       <strong>
+        Date with Slash
+       </strong>
+       : Masks the year in date formats like MM/DD/YYYY, M/DD/YYYY, MM/D/YYYY, M/D/YYYY.
+      </li>
+      <li>
+       <strong>
+        Email
+       </strong>
+       : Masks the entire email address.
+      </li>
+      <li>
+       <strong>
+        Email Hide Name
+       </strong>
+       : Masks the name and provider.
+      </li>
+     </ul>
+     <p>
+      These built-in rules are great starting points, but it's also highly extensible. With a bit of RegEx magic, you can mask almost anything!
+     </p>
+     <p>
+      <a class="anchor" href="#downsides">
+       <h2 id="downsides">
+        Downsides
+       </h2>
+      </a>
+     </p>
+     <p>
+      Sounds pretty good so far, right? Well, there are a couple of significant caveats:
+     </p>
+     <ol>
+      <li>
+       <strong>
+        Only one rule per column
+       </strong>
+       : Want to mask emails? Easy! Hide National Insurance numbers? Done! Do both at the same time? Not so fast!
+      </li>
+      <li>
+       <strong>
+        Column Security Profile is mandatory
+       </strong>
+       : You need to create a Column Security Profile and explicitly add users to it. Without this, the entire field becomes masked and uneditable.
+      </li>
+      <li>
+       <strong>
+        Not easy to see unmasked
+       </strong>
+       : To view unmasked data, you need to retrieve the entity using the WebAPI with the
+       <code>
+        ?UnMaskedData=true
+       </code>
+       flag. Microsoft says that "In future releases, there should be a button to allow users who have the Read unmasked permission to read the unmasked values," but as of publication this has not yet happened.
+      </li>
+     </ol>
+     <p>
+      <a class="anchor" href="#how_can_we_use_them?_">
+       <h2 id="how_can_we_use_them?_">
+        How can we use them?
+       </h2>
+      </a>
+     </p>
+     <h3>
+      Step One - Enable your column for Column Security
+     </h3>
+     <p>
+      <img alt="Enable Column Security" src="/resources\images\dynamics365\attribute-masking\security.png" title="Enable Column Security"/>
+     </p>
+     <p>
+      You'll notice an option here to directly set a masking rule, this automatically creates an Attribute Masking Rule linking the Secured Masking Rule to your column. But let's hold off on selecting that for now, and instead create the rule manually to fully understand what's happening behind the scenes.
+     </p>
+     <h3>
+      Step Two - Create a RegEx Secured Masking Rule
+     </h3>
+     <p>
+      Let's create a rule to mask all Unicode characters using this RegEx:
+     </p>
+     <pre class="codehilite"><code class="language-regex">[^\x00-\x7F]+\ *(?:[^\x00-\x7F]| )
+</code></pre>
+     <p>
+      We can use this to mask non-ASCII characters in URLs, helping detect
+      <a href="https://en.wikipedia.org/wiki/IDN_homograph_attack">
+       IDN homograph attacks
+      </a>
+      . These attacks involve look-alike characters replacing standard ASCII characters, for example, the Cyrillic "а" instead of the Latin "a."
+     </p>
+     <p>
+      To create a new Secured Masking Rule, head to the
+      <strong>
+       Security
+      </strong>
+      section under the
+      <strong>
+       New
+      </strong>
+      menu.
+     </p>
+     <p>
+      <img alt="New Button" src="/resources/images/dynamics365/attribute-masking/new-rule.png" title="New Button"/>
+     </p>
+     <p>
+      Clicking this opens the rule creation form in a new tab, complete with a handy preview area.
+     </p>
+     <p>
+      <img alt="New Rule Form" src="/resources/images/dynamics365/attribute-masking/new-rule-form.png" title="New Rule Form"/>
+     </p>
+     <ul>
+      <li>
+       <strong>
+        Name
+       </strong>
+       : Enter your schema name, starting with your publisher prefix (note this isn't auto-populated).
+      </li>
+      <li>
+       <strong>
+        Display Name
+       </strong>
+       and
+       <strong>
+        Description
+       </strong>
+       : Clear and straightforward.
+      </li>
+      <li>
+       <strong>
+        Regular Expression
+       </strong>
+       : Input your Regex here. Microsoft provides a useful reference
+       <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">
+        here
+       </a>
+       .
+      </li>
+      <li>
+       <strong>
+        Masked Character
+       </strong>
+       : Choose your masking character, my go-to is typically an asterisk (*).
+      </li>
+     </ul>
+     <p>
+      The preview section on the right lets you instantly test and verify your masking rule on plain and rich text. As shown, our rule successfully masks the non-ASCII Cyrillic "а".
+     </p>
+     <h3>
+      Step Three - Creating the Attribute Masking Column
+     </h3>
+     <p>
+      Now that we have our masking rule, it's time to apply it to our column. The process for creating an Attribute Masking Column is very similar to creating the masking rule, it opens a form in a new tab.
+     </p>
+     <p>
+      <img alt="New Mask Rule" src="/resources/images/dynamics365/attribute-masking/new-mask-rule.png" title="New Mask Rule"/>
+     </p>
+     <p>
+      Here again, we need to name the Attribute Masking Column using our publisher prefix, then provide the schema names for both the column and the entity, and finally select our masking rule.
+     </p>
+     <p>
+      Once saved, the masking rule will take effect.
+     </p>
+     <p>
+      <img alt="Rule working" src="/resources/images/dynamics365/attribute-masking/rule-working.png" title="Rule working"/>
+     </p>
+     <p>
+      As previously mentioned, there is a shortcut to creating this Attribute Masking Column. If we look at the advanced settings on our column again, we will see our ASCII rule already selected.
+     </p>
+     <p>
+      <img alt="Rule in Advanced settings" src="/resources/images/dynamics365/attribute-masking/rule-in-advanced.png" title="Rule in Advanced settings"/>
+     </p>
+     <p>
+      If we were to change that masking rule in the advanced settings and then open the form for the Attribute Masking Column, we would see the updated rule reflected there as well.
+     </p>
+     <p>
+      <a class="anchor" href="#done?_not!">
+       <h2 id="done?_not!">
+        Done? NOT!
+       </h2>
+      </a>
+     </p>
+     <p>
+      At this point, you might think we're ready to push this out to users, but if we did, they might find the field a little
+      <em>
+       more
+      </em>
+      masked than expected, in fact it will be fully redacted. By enabling column security, we've designated this column as requiring extra security. As such, we now need to define a Column Security Profile to control this security.
+     </p>
+     <p>
+      <img alt="Not allowed by default" src="/resources/images/dynamics365/attribute-masking/profile-not-allowed.png" title="Not allowed by default"/>
+     </p>
+     <p>
+      When creating a new Column Security Profile, we can see that by default users, unless they have the System Admin role, will not be allowed to
+      <strong>
+       Read
+      </strong>
+      the column, either masked or unmasked. Nor can they
+      <strong>
+       Update
+      </strong>
+      or
+      <strong>
+       Create
+      </strong>
+      it.
+     </p>
+     <p>
+      Let's change
+      <strong>
+       Read
+      </strong>
+      ,
+      <strong>
+       Update
+      </strong>
+      , and
+      <strong>
+       Create
+      </strong>
+      to
+      <strong>
+       Allowed
+      </strong>
+      . We can then associate Teams or individual Users with this Profile. Once a user has this Profile, they'll be able to see our column and the masking!
+     </p>
+     <p>
+      <a class="anchor" href="#final_thoughts">
+       <h2 id="final_thoughts">
+        Final Thoughts
+       </h2>
+      </a>
+     </p>
+     <p>
+      Attribute Masking (or
+      <strong>
+       Secured Masking
+      </strong>
+      ) is one of those features that
+      <em>
+       sounds great
+      </em>
+      but is a little lackluster in reality.
+     </p>
+     <h3>
+      The good news:
+     </h3>
+     <p>
+      In certain cases, it's the perfect solution. Hiding sensitive data after initial input can be a great way to tighten security in your system.
+      <br/>
+      And with the flexibility of RegEx, you'll be hard pressed to find something you can't mask.
+     </p>
+     <h3>
+      The not-so-good news:
+     </h3>
+     <p>
+      It's still a bit rough around the edges:
+     </p>
+     <ul>
+      <li>
+       You can only apply one rule per column.
+      </li>
+      <li>
+       The "unmasked" experience isn't there yet, with no UI support and only clumsy support via WebAPI, it feels like a chore.
+      </li>
+      <li>
+       You’ll need to do some extra security plumbing with Column Security Profiles.
+      </li>
+     </ul>
+     <p>
+      ⚠️ Heads up: Not all field types support masking, for example, Lookup columns and Option Sets can't be masked. Only text-based columns (Single Line of Text, Multiple Lines of Text, etc.) are supported.
+     </p>
+     <p>
+      <a class="anchor" href="#refrences_and_resources_">
+       <h2 id="refrences_and_resources_">
+        Refrences and Resources
+       </h2>
+      </a>
+     </p>
+     <ul>
+      <li>
+       <a href="https://learn.microsoft.com/en-us/dynamics365/customer-service/administer/data-masking-settings?WT.mc_id=DX-MVP-5004571">
+        Create and manage data masking rules
+       </a>
+      </li>
+      <li>
+       <a href="https://learn.microsoft.com/en-us/power-platform/admin/field-level-security">
+        Column-level security to control access
+       </a>
+      </li>
+      <li>
+       <a href="https://learn.microsoft.com/en-us/power-platform/admin/create-manage-masking-rules">
+        Create and manage masking rules (preview)
+       </a>
+      </li>
+     </ul>
+    </article>
+   </div>
+   <p>
+   </p>
+   <div id="disqus_thread">
+   </div>
+  </div>
+  <script>
+   (function () {
+            // DON'T EDIT BELOW THIS LINEx
+            var d = document,
+                s = d.createElement("script");
+            s.src = "https://joepitts-co-uk.disqus.com/embed.js";
+            s.setAttribute("data-timestamp", +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+  </script>
+  <noscript>
+   Please enable JavaScript to view the
+   <a href="https://disqus.com/?ref_noscript">
+    comments powered by Disqus.
+   </a>
+  </noscript>
+  <div class="footer">
+   <ul class="footerContainer">
+    <li>
+     <p id="copyright">
+      Copyright © 2018-2025, Joe Pitts. All rights reserved.
+     </p>
+    </li>
+    <a href="https://www.linkedin.com/in/joepittsy">
+     <img class="footerLogo" src="/resources/ln.svg"/>
+    </a>
+    <a href="https://github.com/JoePittsy">
+     <li>
+      <img class="footerLogo" src="/resources/github.svg"/>
+     </li>
+    </a>
+    <a href="https://twitter.com/JoePittsy">
+     <li>
+      <img class="footerLogo" src="/resources/twitter.svg"/>
+     </li>
+    </a>
+   </ul>
+   <div class="mobileFooterContainer">
+    <p id="copyright">
+     Copyright © 2018-2025, Joe Pitts. All rights reserved.
+    </p>
+    <div class="mobileFooter">
+     <a href="https://www.linkedin.com/in/joepittsy">
+      <img class="footerLogo" src="/resources/ln.svg"/>
+     </a>
+     <a href="https://github.com/JoePittsy">
+      <img class="footerLogo" src="/resources/github.svg"/>
+     </a>
+     <a href="https://twitter.com/JoePittsy">
+      <img class="footerLogo" src="/resources/twitter.svg"/>
+     </a>
+    </div>
+   </div>
+  </div>
+  <script defer="">
+   (function () {
+            // This should include all of the code snippets
+            new ClipboardJS("#code-ff2ae226c1cf4280a3178e196a9f13a3-btn,#code-c9cf5474cb594db6939ab1249c703b63-btn");
+        })();
+  </script>
+ </body>
+</html>

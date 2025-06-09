@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+ <head>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@JoePittsy" name="twitter:site"/>
+  <meta content="Explore Dynamics 365 Customer Engagement through a comprehensive series covering insights, tips, and techniques from every letter of the alphabet." name="twitter:description"/>
+  <meta content="Joe Pitts | Dynamics 365 CE: From A-Z" name="twitter:title"/>
+  <meta content="@JoePittsy" name="twitter:creator"/>
+  <meta content="Dynamics 365 CE: From A-Z" property="og:title"/>
+  <meta content="Explore Dynamics 365 Customer Engagement through a comprehensive series covering insights, tips, and techniques from every letter of the alphabet." property="og:description"/>
+  <meta content="https://joepitts.co.uk./blog/dynamics365/a-z/index.html" property="og:url"/>
+  <meta content="Joe Pitts" name="author"/>
+  <meta content="placeholder" property="og:image"/>
+  <meta content="placeholder" name="twitter:image"/>
+  <title>
+   Dynamics 365 CE: From A-Z
+  </title>
+  <meta content="Explore Dynamics 365 Customer Engagement through a comprehensive series covering insights, tips, and techniques from every letter of the alphabet." name="description"/>
+  <script src="/js/darkMode.js" type="text/javascript">
+  </script>
+  <script src="/js/clipboard.min.js">
+  </script>
+  <link href="/resources/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/resources/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/resources/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/resources/site.webmanifest" rel="manifest"/>
+  <link href="/resources/safari-pinned-tab.svg" rel="mask-icon"/>
+  <meta content="#da532c" name="msapplication-TileColor"/>
+  <meta content="#ffffff" name="theme-color"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/blog.css" rel="stylesheet" type="text/css"/>
+  <link href="/style.css" rel="stylesheet" type="text/css"/>
+  <link href="/code_styles.css" rel="stylesheet" type="text/css"/>
+  <meta lang="en-gb"/>
+  <noscript>
+   <style>
+    .jsonly {
+                display: none
+            }
+   </style>
+  </noscript>
+  <script type="application/ld+json">
+   {
+    "@context": "http://schema.org",
+    "@type": "TechArticle",
+    "headline": "Dynamics 365 CE: From A-Z",
+    "description": "Explore Dynamics 365 Customer Engagement through a comprehensive series covering insights, tips, and techniques from every letter of the alphabet.",
+    "datePublished": "2025-05-07",
+    "author": {
+        "@type": "Person",
+        "name": "Joe Pitts",
+        "additionalName": "David",
+        "affiliation": "TrueNorthIT",
+        "jobTitle": "Solutions Developer",
+        "url": "https://JoePitts.co.uk",
+        "sameAs": [
+            "https://www.facebook.com/Joe.Pittsy",
+            "https://www.linkedin.com/in/JoePittsy",
+            "https://twitter.com/JoePittsy",
+            "https://www.instagram.com/JoePittsy/"
+        ]
+    },
+    "keywords": "Dynamics365 A-Z"
+}
+  </script>
+  <script type="text/javascript">
+   document.addEventListener('DOMContentLoaded', () => {
+    fetch('/blog/articles.json')
+        .then(response => response.json())
+        .then(data => {
+            const tocList = document.getElementById('tocList');
+
+            const filteredArticles = data.articles.filter(article =>
+                article.tags.includes('Dynamics365 A-Z') && 
+                !article.link.includes("index.html")
+            );
+
+            // Group articles by letter
+            const grouped = {};
+
+            filteredArticles.forEach(article => {
+                const match = article.link.match(/\/a-z\/([a-z])\//i);
+                if (match) {
+                    const letter = match[1].toUpperCase();
+                    if (!grouped[letter]) {
+                        grouped[letter] = [];
+                    }
+                    grouped[letter].push(article);
+                }
+            });
+
+            // Sort letters alphabetically
+            const letters = Object.keys(grouped).sort();
+
+            letters.forEach(letter => {
+                // Create Letter Heading
+                const letterHeader = document.createElement('h3');
+                letterHeader.textContent = letter;
+                tocList.appendChild(letterHeader);
+
+                // Create list for each letter
+                const ul = document.createElement('ul');
+
+                // Sort articles within each letter alphabetically
+                grouped[letter].sort((a, b) => a.headline.localeCompare(b.headline));
+
+                grouped[letter].forEach(article => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = article.link;
+                    a.textContent = article.headline.split(' - ')[0]; // Use the first part of the headline
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+
+                tocList.appendChild(ul);
+            });
+        })
+        .catch(err => console.error('Error fetching ToC data:', err));
+});
+  </script>
+ </head>
+ <body link="black" style="height: auto;">
+  <div class="content" id="content">
+   <header>
+    <div id="container">
+     <div id="header">
+      <img alt="Joe Pitts" id="logo" src="/resources/JoePitts.jpg" title="Joe Pitts" width="10%"/>
+      <nav id="normalMenu">
+       <ul class="menu">
+        <li>
+         <a href="/">
+          Home
+         </a>
+        </li>
+        <li>
+         <a href="/blog" id="currentPage">
+          Blog
+         </a>
+        </li>
+        <li>
+         <a href="/work.html">
+          My Work
+         </a>
+        </li>
+        <li>
+         <a href="/games/">
+          Games
+         </a>
+        </li>
+        <li id="darkItem">
+         <img class="toggleDark" onclick="toggleNightMode()" src="/resources/moon.svg"/>
+        </li>
+       </ul>
+      </nav>
+     </div>
+    </div>
+   </header>
+   <hr/>
+   <div class="blogPost">
+    <span id="titleAndReadingTime">
+     <h1 id="blogPostTitle">
+      Dynamics 365 CE: From A-Z
+     </h1>
+     <span id="readingTime">
+      <date id="publicationDate">
+       07 May 2025
+      </date>
+      |
+      <p id="estimatedReadingTime">
+       1-2 Minutes
+      </p>
+     </span>
+    </span>
+    <article id="blogPostContent">
+     <p>
+      <a class="anchor" href="#overview">
+       <h2 id="overview">
+        Overview
+       </h2>
+      </a>
+     </p>
+     <p>
+      Welcome to my blog series, Dynamics 365 CE: From A-Z! In this collection, I'll explore Dynamics 365 Customer Engagement thoroughly, covering features and techniques from every letter of the alphabet. My goal is not only to share what I've learned from my daily work but also to uncover new insights and hidden gems along the way.
+     </p>
+     <p>
+      Each week, I’ll aim to publish a new post highlighting a specific aspect or feature of Dynamics 365 CE, working my way systematically from A to Z. Hopefully this will serve as a resource for those wanting to learn D365 as well as providing some value for seasoned developers.
+     </p>
+     <p>
+      <a class="anchor" href="#about_me">
+       <h2 id="about_me">
+        About Me
+       </h2>
+      </a>
+     </p>
+     <p>
+      I'm a software developer at TrueNorthIT, where we specialize in building robust Dynamics 365 CE solutions. Microsoft may be pushing Low Code recently, but I'm all about pushing Dynamics 365 to its limits with FULL CODE. Developing plugins, creating complex web resources, and integrating seamlessly with Azure services are my forte. I thrive on pushing the boundaries of what's possible while staying on the right side of supported!
+     </p>
+     <p>
+      Join me on this alphabetical adventure as we explore, discover, and innovate within Dynamics 365 CE!
+     </p>
+     <p>
+      <a class="anchor" href="#table_of_contents">
+       <h2 id="table_of_contents">
+        Table of Contents
+       </h2>
+      </a>
+     </p>
+     <p>
+      <div class="toc">
+       <ul id="tocList">
+       </ul>
+      </div>
+     </p>
+    </article>
+   </div>
+   <p>
+   </p>
+   <div id="disqus_thread">
+   </div>
+  </div>
+  <script>
+   (function () {
+            // DON'T EDIT BELOW THIS LINEx
+            var d = document,
+                s = d.createElement("script");
+            s.src = "https://joepitts-co-uk.disqus.com/embed.js";
+            s.setAttribute("data-timestamp", +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+  </script>
+  <noscript>
+   Please enable JavaScript to view the
+   <a href="https://disqus.com/?ref_noscript">
+    comments powered by Disqus.
+   </a>
+  </noscript>
+  <div class="footer">
+   <ul class="footerContainer">
+    <li>
+     <p id="copyright">
+      Copyright © 2018-2025, Joe Pitts. All rights reserved.
+     </p>
+    </li>
+    <a href="https://www.linkedin.com/in/joepittsy">
+     <img class="footerLogo" src="/resources/ln.svg"/>
+    </a>
+    <a href="https://github.com/JoePittsy">
+     <li>
+      <img class="footerLogo" src="/resources/github.svg"/>
+     </li>
+    </a>
+    <a href="https://twitter.com/JoePittsy">
+     <li>
+      <img class="footerLogo" src="/resources/twitter.svg"/>
+     </li>
+    </a>
+   </ul>
+   <div class="mobileFooterContainer">
+    <p id="copyright">
+     Copyright © 2018-2025, Joe Pitts. All rights reserved.
+    </p>
+    <div class="mobileFooter">
+     <a href="https://www.linkedin.com/in/joepittsy">
+      <img class="footerLogo" src="/resources/ln.svg"/>
+     </a>
+     <a href="https://github.com/JoePittsy">
+      <img class="footerLogo" src="/resources/github.svg"/>
+     </a>
+     <a href="https://twitter.com/JoePittsy">
+      <img class="footerLogo" src="/resources/twitter.svg"/>
+     </a>
+    </div>
+   </div>
+  </div>
+  <script defer="">
+   (function () {
+            // This should include all of the code snippets
+            new ClipboardJS("#code-ff2ae226c1cf4280a3178e196a9f13a3-btn");
+        })();
+  </script>
+ </body>
+</html>

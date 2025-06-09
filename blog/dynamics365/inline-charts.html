@@ -10,6 +10,8 @@
   <meta content="Explore the integration of in-line charts in Dynamics 365 forms to elevate data visualization. This post covers how to embed charts but most importantly, adjusting their size" property="og:description"/>
   <meta content="https://joepitts.co.uk./blog/dynamics365/inline-charts.html" property="og:url"/>
   <meta content="Joe Pitts" name="author"/>
+  <meta content="placeholder" property="og:image"/>
+  <meta content="placeholder" name="twitter:image"/>
   <title>
    Enhancing Dynamics 365 Forms: In-Line Charts in all shapes and sizes!
   </title>
@@ -170,41 +172,29 @@ The potential is there but the default chart size somewhat limits its practicali
       </a>
       in XrmToolbox. It enables editing and rapid republishing of the XML, allowing for experimentation with different rowspan values to achieve the desired chart size.
      </p>
-     <div class="codeSnippet">
-      <div class="double-val-label">
-       <span class="xml">
-        XML
-       </span>
-       <span data-clipboard-target="#code-c6b52d96b21f49b1b9aa13f1ad251bc5" id="code-c6b52d96b21f49b1b9aa13f1ad251bc5-btn">
-        Copy
-       </span>
-      </div>
-      <div class="codehilite">
-       <pre id="code-c6b52d96b21f49b1b9aa13f1ad251bc5"><span></span><code><span class="nt">&lt;cell</span><span class="w"> </span><span class="na">locklevel=</span><span class="s">"0"</span><span class="w"> </span><span class="na">id=</span><span class="s">"{6787823b-9029-4777-a933-764e726edf4a}"</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">"8"</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"1"</span><span class="w"> </span><span class="na">auto=</span><span class="s">"true"</span>
-<span class="w">    </span><span class="na">showlabel=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;labels&gt;</span>
-<span class="w">        </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">description=</span><span class="s">"Home vs Away Total Savings"</span><span class="w"> </span><span class="na">languagecode=</span><span class="s">"1033"</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/labels&gt;</span>
-<span class="w">    </span><span class="nt">&lt;control</span><span class="w"> </span><span class="na">indicationOfSubgrid=</span><span class="s">"true"</span><span class="w"> </span><span class="na">id=</span><span class="s">"Subgrid_new_2"</span>
-<span class="w">        </span><span class="na">classid=</span><span class="s">"{E7A81278-8635-4D9E-8D4D-59480B391C5B}"</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;parameters&gt;</span>
-<span class="w">            </span><span class="nt">&lt;RecordsPerPage&gt;</span>250<span class="nt">&lt;/RecordsPerPage&gt;</span>
-<span class="w">            </span><span class="nt">&lt;AutoExpand&gt;</span>Auto<span class="nt">&lt;/AutoExpand&gt;</span>
-<span class="w">            </span><span class="nt">&lt;EnableQuickFind&gt;</span>false<span class="nt">&lt;/EnableQuickFind&gt;</span>
-<span class="w">            </span><span class="nt">&lt;EnableViewPicker&gt;</span>false<span class="nt">&lt;/EnableViewPicker&gt;</span>
-<span class="w">            </span><span class="nt">&lt;EnableChartPicker&gt;</span>true<span class="nt">&lt;/EnableChartPicker&gt;</span>
-<span class="w">            </span><span class="nt">&lt;ChartGridMode&gt;</span>Chart<span class="nt">&lt;/ChartGridMode&gt;</span>
-<span class="w">            </span><span class="nt">&lt;TargetEntityType&gt;</span>tn_visit<span class="nt">&lt;/TargetEntityType&gt;</span>
-<span class="w">            </span><span class="nt">&lt;ViewId&gt;</span>{02AF3A75-BF87-EE11-BE36-6045BDD0EDF1}<span class="nt">&lt;/ViewId&gt;</span>
-<span class="w">            </span><span class="nt">&lt;ViewIds&gt;</span>{A95A8474-2567-4F84-B6B2-A09E9E52575A},{02AF3A75-BF87-EE11-BE36-6045BDD0EDF1}<span class="nt">&lt;/ViewIds&gt;</span>
-<span class="w">            </span><span class="nt">&lt;RelationshipName&gt;</span>tn_SavingsBatch_tn_SavingsBatch_tn_Visit<span class="nt">&lt;/RelationshipName&gt;</span>
-<span class="w">            </span><span class="nt">&lt;VisualizationId&gt;</span>{DE63F41E-C287-EE11-BE36-6045BDD27787}<span class="nt">&lt;/VisualizationId&gt;</span>
-<span class="w">        </span><span class="nt">&lt;/parameters&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/control&gt;</span>
-<span class="nt">&lt;/cell&gt;</span><span class="w"> </span>
+     <pre class="codehilite"><code class="language-xml">&lt;cell locklevel="0" id="{6787823b-9029-4777-a933-764e726edf4a}" rowspan="8" colspan="1" auto="true"
+    showlabel="true"&gt;
+    &lt;labels&gt;
+        &lt;label description="Home vs Away Total Savings" languagecode="1033" /&gt;
+    &lt;/labels&gt;
+    &lt;control indicationOfSubgrid="true" id="Subgrid_new_2"
+        classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}"&gt;
+        &lt;parameters&gt;
+            &lt;RecordsPerPage&gt;250&lt;/RecordsPerPage&gt;
+            &lt;AutoExpand&gt;Auto&lt;/AutoExpand&gt;
+            &lt;EnableQuickFind&gt;false&lt;/EnableQuickFind&gt;
+            &lt;EnableViewPicker&gt;false&lt;/EnableViewPicker&gt;
+            &lt;EnableChartPicker&gt;true&lt;/EnableChartPicker&gt;
+            &lt;ChartGridMode&gt;Chart&lt;/ChartGridMode&gt;
+            &lt;TargetEntityType&gt;tn_visit&lt;/TargetEntityType&gt;
+            &lt;ViewId&gt;{02AF3A75-BF87-EE11-BE36-6045BDD0EDF1}&lt;/ViewId&gt;
+            &lt;ViewIds&gt;{A95A8474-2567-4F84-B6B2-A09E9E52575A},{02AF3A75-BF87-EE11-BE36-6045BDD0EDF1}&lt;/ViewIds&gt;
+            &lt;RelationshipName&gt;tn_SavingsBatch_tn_SavingsBatch_tn_Visit&lt;/RelationshipName&gt;
+            &lt;VisualizationId&gt;{DE63F41E-C287-EE11-BE36-6045BDD27787}&lt;/VisualizationId&gt;
+        &lt;/parameters&gt;
+    &lt;/control&gt;
+&lt;/cell&gt; 
 </code></pre>
-      </div>
-     </div>
      <p>
       Once we adjust the rowspan from 4 to 8, the true potential of charts on forms becomes evident.
      </p>
@@ -247,7 +237,7 @@ The potential is there but the default chart size somewhat limits its practicali
    <ul class="footerContainer">
     <li>
      <p id="copyright">
-      Copyright © 2018-2023, Joe Pitts. All rights reserved.
+      Copyright © 2018-2025, Joe Pitts. All rights reserved.
      </p>
     </li>
     <a href="https://www.linkedin.com/in/joepittsy">
@@ -266,7 +256,7 @@ The potential is there but the default chart size somewhat limits its practicali
    </ul>
    <div class="mobileFooterContainer">
     <p id="copyright">
-     Copyright © 2018-2023, Joe Pitts. All rights reserved.
+     Copyright © 2018-2025, Joe Pitts. All rights reserved.
     </p>
     <div class="mobileFooter">
      <a href="https://www.linkedin.com/in/joepittsy">
@@ -284,7 +274,7 @@ The potential is there but the default chart size somewhat limits its practicali
   <script defer="">
    (function () {
             // This should include all of the code snippets
-            new ClipboardJS("#code-c6b52d96b21f49b1b9aa13f1ad251bc5-btn");
+            new ClipboardJS("#code-ff2ae226c1cf4280a3178e196a9f13a3-btn");
         })();
   </script>
  </body>

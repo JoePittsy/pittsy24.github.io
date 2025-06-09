@@ -1,0 +1,3 @@
+PyYAML
+Markdown
+beautifulsoup4

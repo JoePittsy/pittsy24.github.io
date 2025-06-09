@@ -31,6 +31,18 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://www.joepitts.co.uk/blog/dynamics365/a-z/a/attribute-masking-rules.html</loc>
+    <lastmod>2025-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.joepitts.co.uk/blog/dynamics365/a-z/index.html</loc>
+    <lastmod>2025-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.joepitts.co.uk/blog/dynamics365/inline-charts.html</loc>
     <lastmod>2023-11-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -43,128 +55,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-21.html</loc>
-    <lastmod>2020-12-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-19.html</loc>
-    <lastmod>2020-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-18.html</loc>
-    <lastmod>2020-12-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-17.html</loc>
-    <lastmod>2020-12-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-16.html</loc>
-    <lastmod>2020-12-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-15.html</loc>
-    <lastmod>2020-12-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-14.html</loc>
-    <lastmod>2020-12-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-13.html</loc>
-    <lastmod>2020-12-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-12.html</loc>
-    <lastmod>2020-12-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-11.html</loc>
-    <lastmod>2020-12-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-10.html</loc>
-    <lastmod>2020-12-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.joepitts.co.uk/blog/creating-a-light-alarm-clock-with-azure.html</loc>
     <lastmod>2020-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-09.html</loc>
-    <lastmod>2020-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-08.html</loc>
-    <lastmod>2020-12-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-07.html</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-06.html</loc>
-    <lastmod>2020-12-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-05.html</loc>
-    <lastmod>2020-12-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-04.html</loc>
-    <lastmod>2020-12-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-03.html</loc>
-    <lastmod>2020-12-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-02.html</loc>
-    <lastmod>2020-12-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.joepitts.co.uk/blog/advent-of-code-day-01.html</loc>
-    <lastmod>2020-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
