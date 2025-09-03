@@ -35,6 +35,28 @@
   <meta property="og:image" content="https://joepitts.co.uk/resources/JoePitts.jpg" />
   <meta name="twitter:image" content="https://joepitts.co.uk/resources/JoePitts.jpg" />
 
+  
+  <script>
+          (function (a, t, i) { var e = "MSCI"; var s = "Analytics"; var o = e + "queue"; a[o] = a[o] || []; var r = a[e] || function (n) { var t = {}; t[s] = {}; function e(e) { while (e.length) { var r = e.pop(); t[s][r] = function (e) { return function () { a[o].push([e, n, arguments]) } }(r) } } var r = "track"; var i = "set"; e([r + "Event", r + "View", r + "Action", i + "Config", i + "Property", i + "User", "initialize", "teardown"]); return t }(i.name); var n = i.name; if (!a[e]) { a[n] = r[s]; a[o].push(["new", n]); setTimeout(function () { var e = "script"; var r = t.createElement(e); r.async = 1; r.src = i.src; var n = t.getElementsByTagName(e)[0]; n.parentNode.insertBefore(r, n) }, 1) } else { a[n] = new r[s] } if (i.user) { a[n].setUser(i.user) } if (i.props) { for (var c in i.props) { a[n].setProperty(c, i.props[c]) } } a[n].initialize(i.cfg) })(window, document, {
+
+              src: "https://cxppgbr1rdrect01sa02cdn-endpoint.azureedge.net/webtracking/WebTracking/WebTracking.bundle.js",
+              name: "MSCI",
+              cfg: {
+
+                  ingestionKey: "f5841437e1764344ba42889ac045548a-3590bf4a-33f6-4b71-9d32-204bd4cc5adf-7294",
+                  endpointUrl: "https://mobile.events.data.microsoft.com/OneCollector/1.0/",
+                  autoCapture: {
+                      view: true,
+                      click: true
+                  },
+                  orgInfo: {
+                      orgId: "018a0896-c2c1-ed11-a10b-6045bdcf32a4",
+                      orgTenantId: "849ace28-3951-4fbf-b420-bd63bc528ce9",
+                      orgGeo: "GBR"
+                  }
+              }
+          });
+  </script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114382787-2"></script>
   <script>
