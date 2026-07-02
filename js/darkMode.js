@@ -40,7 +40,6 @@ window.addEventListener('load', function () {	// Create the measurement node
 	var isVerticalScrollbar = root.scrollHeight > root.clientHeight;
 
 	if (isVerticalScrollbar){
-		console.log("SCROLL PADDING BY" + scrollbarWidth)
 		document.getElementsByTagName("body")[0].style.padding = "0 0px 8rem " + scrollbarWidth + "px"
 	}
 	else{

@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en-gb">
  <head>
-  <meta content="summary" name="twitter:card"/>
-  <meta content="@JoePittsy" name="twitter:site"/>
-  <meta content="Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples." name="twitter:description"/>
-  <meta content="Joe Pitts | Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE" name="twitter:title"/>
-  <meta content="@JoePittsy" name="twitter:creator"/>
-  <meta content="Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE" property="og:title"/>
-  <meta content="Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples." property="og:description"/>
-  <meta content="https://joepitts.co.uk./blog/dynamics365/attribute-masking-rules.html" property="og:url"/>
-  <meta content="Joe Pitts" name="author"/>
-  <meta content="https://joepitts.co.uk/resources/images/dynamics365/attribute-masking/logo.png" property="og:image"/>
-  <meta content="https://joepitts.co.uk/resources/images/dynamics365/attribute-masking/logo.png" name="twitter:image"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>
    Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE
   </title>
   <meta content="Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples." name="description"/>
+  <meta content="Joe Pitts" name="author"/>
+  <!-- Google tag (gtag.js) -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-M0ZC1GPXTF">
+  </script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-M0ZC1GPXTF');
+  </script>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@JoePittsy" name="twitter:site"/>
+  <meta content="@JoePittsy" name="twitter:creator"/>
+  <meta content="Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples." name="twitter:description"/>
+  <meta content="Joe Pitts | Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE" name="twitter:title"/>
+  <meta content="https://joepitts.co.uk/resources/images/dynamics365/attribute-masking/logo.png" name="twitter:image"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE" property="og:title"/>
+  <meta content="Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples." property="og:description"/>
+  <meta content="https://joepitts.co.uk/blog/dynamics365/attribute-masking-rules.html" property="og:url"/>
+  <meta content="https://joepitts.co.uk/resources/images/dynamics365/attribute-masking/logo.png" property="og:image"/>
   <script src="/js/darkMode.js" type="text/javascript">
   </script>
   <script src="/js/clipboard.min.js">
@@ -27,12 +39,9 @@
   <link href="/resources/safari-pinned-tab.svg" rel="mask-icon"/>
   <meta content="#da532c" name="msapplication-TileColor"/>
   <meta content="#ffffff" name="theme-color"/>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <link href="/blog.css" rel="stylesheet" type="text/css"/>
   <link href="/style.css" rel="stylesheet" type="text/css"/>
   <link href="/code_styles.css" rel="stylesheet" type="text/css"/>
-  <meta lang="en-gb"/>
   <noscript>
    <style>
     .jsonly {
@@ -42,7 +51,7 @@
   </noscript>
   <script type="application/ld+json">
    {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE",
     "description": "Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples.",
@@ -53,7 +62,7 @@
         "additionalName": "David",
         "affiliation": "TrueNorthIT",
         "jobTitle": "Solutions Developer",
-        "url": "https://JoePitts.co.uk",
+        "url": "https://joepitts.co.uk",
         "sameAs": [
             "https://www.facebook.com/Joe.Pittsy",
             "https://www.linkedin.com/in/JoePittsy",
@@ -64,6 +73,7 @@
     "keywords": "Dynamics365"
 }
   </script>
+  <link href="https://joepitts.co.uk/blog/dynamics365/attribute-masking-rules.html" rel="canonical"/>
  </head>
  <body link="black" style="height: auto;">
   <div class="content" id="content">
@@ -94,7 +104,7 @@
          </a>
         </li>
         <li id="darkItem">
-         <img class="toggleDark" onclick="toggleNightMode()" src="/resources/moon.svg"/>
+         <img alt="Toggle dark mode" class="toggleDark" onclick="toggleNightMode()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleNightMode()" role="button" src="/resources/moon.svg" tabindex="0"/>
         </li>
        </ul>
       </nav>
@@ -226,8 +236,20 @@
      <p>
       Let's create a rule to mask all Unicode characters using this RegEx:
      </p>
-     <pre class="codehilite"><code class="language-regex">[^\x00-\x7F]+\ *(?:[^\x00-\x7F]| )
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="regex">
+        REGEX
+       </span>
+       <span data-clipboard-target="#code-03b118b0ae7e4767be61a36a42c9f912" id="code-03b118b0ae7e4767be61a36a42c9f912-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-03b118b0ae7e4767be61a36a42c9f912"><span></span><code>[^\x00-\x7F]+\ *(?:[^\x00-\x7F]| )
 </code></pre>
+      </div>
+     </div>
      <p>
       We can use this to mask non-ASCII characters in URLs, helping detect
       <a href="https://en.wikipedia.org/wiki/IDN_homograph_attack">
@@ -466,37 +488,39 @@
   <div class="footer">
    <ul class="footerContainer">
     <li>
-     <p id="copyright">
+     <p class="copyright">
       Copyright © 2018-2025, Joe Pitts. All rights reserved.
      </p>
     </li>
-    <a href="https://www.linkedin.com/in/joepittsy">
-     <img class="footerLogo" src="/resources/ln.svg"/>
-    </a>
-    <a href="https://github.com/JoePittsy">
-     <li>
-      <img class="footerLogo" src="/resources/github.svg"/>
-     </li>
-    </a>
-    <a href="https://twitter.com/JoePittsy">
-     <li>
-      <img class="footerLogo" src="/resources/twitter.svg"/>
-     </li>
-    </a>
+    <li>
+     <a href="https://www.linkedin.com/in/joepittsy">
+      <img alt="LinkedIn" class="footerLogo" src="/resources/ln.svg"/>
+     </a>
+    </li>
+    <li>
+     <a href="https://github.com/JoePittsy">
+      <img alt="GitHub" class="footerLogo" src="/resources/github.svg"/>
+     </a>
+    </li>
+    <li>
+     <a href="https://twitter.com/JoePittsy">
+      <img alt="X (Twitter)" class="footerLogo" src="/resources/twitter.svg"/>
+     </a>
+    </li>
    </ul>
    <div class="mobileFooterContainer">
-    <p id="copyright">
+    <p class="copyright">
      Copyright © 2018-2025, Joe Pitts. All rights reserved.
     </p>
     <div class="mobileFooter">
      <a href="https://www.linkedin.com/in/joepittsy">
-      <img class="footerLogo" src="/resources/ln.svg"/>
+      <img alt="LinkedIn" class="footerLogo" src="/resources/ln.svg"/>
      </a>
      <a href="https://github.com/JoePittsy">
-      <img class="footerLogo" src="/resources/github.svg"/>
+      <img alt="GitHub" class="footerLogo" src="/resources/github.svg"/>
      </a>
      <a href="https://twitter.com/JoePittsy">
-      <img class="footerLogo" src="/resources/twitter.svg"/>
+      <img alt="X (Twitter)" class="footerLogo" src="/resources/twitter.svg"/>
      </a>
     </div>
    </div>
@@ -504,7 +528,7 @@
   <script defer="">
    (function () {
             // This should include all of the code snippets
-            new ClipboardJS("#code-e4060e8803614ddb85a5891c639e01c5-btn");
+            new ClipboardJS("#code-03b118b0ae7e4767be61a36a42c9f912-btn");
         })();
   </script>
  </body>

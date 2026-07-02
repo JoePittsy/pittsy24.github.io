@@ -9,7 +9,7 @@ let articleCards = [];
 function populateFilterBox() {
   let filterContainer = $("#filterBox");
 
-  let tagTemplate = '<button class="lang !{tag}!">!{tag}!</span>'
+  let tagTemplate = '<button class="lang !{tag}!">!{tag}!</button>'
   
   tagList.forEach(function (tag) {
     let tagHTML = ""
@@ -109,7 +109,6 @@ async function createBlog(data, delay) {
   let tags = data.tags;
   let tagTemplate = '<li class="lang !{tag}!">!{tag}!</li>'
   let tagHTML = ""
-  console.log(tags)
   for (let index = 0; index < tags.length; index++) {
     let tag = tags[index].toLowerCase();
     tagList.add(tag);

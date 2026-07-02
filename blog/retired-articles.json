@@ -1,11 +1,120 @@
 {
     "articles": [
-    
-           {
+        {
+            "headline": "Advent of Code Day #21",
+            "summary": "Day Twenty-One: Allergen Assessment | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-21.html",
+            "date": 1608552000.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #19",
+            "summary": "Day Nineteen: Monster Messages | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-19.html",
+            "date": 1608379200.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #18",
+            "summary": "Day Eighteen: Operation Order | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-18.html",
+            "date": 1608292800.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #17",
+            "summary": "Day Seventeen: Conway Cubes | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-17.html",
+            "date": 1608206400.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #16",
+            "summary": "Day Sixteen: Ticket Translation | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-16.html",
+            "date": 1608120000.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #15",
+            "summary": "Day Fifteen: Rambunctious Recitation | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-15.html",
+            "date": 1608033600.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #14",
+            "summary": "Day Fourteen: Docking Data | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-14.html",
+            "date": 1607947200.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #13",
+            "summary": "Day Thirteen: Shuttle Search | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-13.html",
+            "date": 1607860800.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #12",
+            "summary": "Day Twelve: Rain Risk | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-12.html",
+            "date": 1607774400.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #11",
+            "summary": "Day Eleven: Seating System | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-11.html",
+            "date": 1607688000.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
+            "headline": "Advent of Code Day #10",
+            "summary": "Day Ten: Adapter Array | Advent of Code 2020",
+            "link": "/blog/advent-of-code-day-10.html",
+            "date": 1607601600.0,
+            "tags": [
+                "Advent",
+                "Python"
+            ]
+        },
+        {
             "headline": "Advent of Code Day #09",
             "summary": "Day Nine: Encoding Error | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-09.html",
-            "date": 1607510160,
+            "date": 1607515200.0,
             "tags": [
                 "Advent",
                 "Python"
@@ -15,7 +124,7 @@
             "headline": "Advent of Code Day #08",
             "summary": "Day Eight: Handheld Halting | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-08.html",
-            "date": 1607424328,
+            "date": 1607428800.0,
             "tags": [
                 "Advent",
                 "Python"
@@ -25,7 +134,7 @@
             "headline": "Advent of Code Day #07",
             "summary": "Day Seven: Handy Haversacks | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-07.html",
-            "date": 1607344729,
+            "date": 1607342400.0,
             "tags": [
                 "Advent",
                 "Python"
@@ -35,7 +144,7 @@
             "headline": "Advent of Code Day #06",
             "summary": "Day Six: Custom Customs | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-06.html",
-            "date": 1607256827,
+            "date": 1607256000.0,
             "tags": [
                 "Advent",
                 "Python"
@@ -45,7 +154,7 @@
             "headline": "Advent of Code Day #05",
             "summary": "Day Five: Binary Boarding | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-05.html",
-            "date": 1607172859,
+            "date": 1607169600.0,
             "tags": [
                 "Advent",
                 "Python"
@@ -55,7 +164,7 @@
             "headline": "Advent of Code Day #04",
             "summary": "Day Four: Passport Processing | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-04.html",
-            "date": 1607098975,
+            "date": 1607083200.0,
             "tags": [
                 "Advent",
                 "Python"
@@ -65,7 +174,7 @@
             "headline": "Advent of Code Day #03",
             "summary": "Day Three: Toboggan Trajectory | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-03.html",
-            "date": 1607007683,
+            "date": 1606996800.0,
             "tags": [
                 "Advent",
                 "Python"
@@ -75,7 +184,7 @@
             "headline": "Advent of Code Day #02",
             "summary": "Day Two: Password Philosophy | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-02.html",
-            "date": 1606903366,
+            "date": 1606910400.0,
             "tags": [
                 "Advent",
                 "Python"
@@ -85,101 +194,11 @@
             "headline": "Advent of Code Day #01",
             "summary": "Day One: Report Repair | Advent of Code 2020",
             "link": "/blog/advent-of-code-day-01.html",
-            "date": 1606820458,
+            "date": 1606824000.0,
             "tags": [
                 "Advent",
                 "Python"
             ]
-        },
-        {
-            "headline": "Advent of Code Day #09",
-            "summary": "Day Nine: Encoding Error | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-09.html",
-            "date": 1607510160,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
-        {
-            "headline": "Advent of Code Day #08",
-            "summary": "Day Eight: Handheld Halting | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-08.html",
-            "date": 1607424328,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
-        {
-            "headline": "Advent of Code Day #07",
-            "summary": "Day Seven: Handy Haversacks | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-07.html",
-            "date": 1607344729,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
-        {
-            "headline": "Advent of Code Day #06",
-            "summary": "Day Six: Custom Customs | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-06.html",
-            "date": 1607256827,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
-        {
-            "headline": "Advent of Code Day #05",
-            "summary": "Day Five: Binary Boarding | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-05.html",
-            "date": 1607172859,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
-        {
-            "headline": "Advent of Code Day #04",
-            "summary": "Day Four: Passport Processing | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-04.html",
-            "date": 1607098975,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
-        {
-            "headline": "Advent of Code Day #03",
-            "summary": "Day Three: Toboggan Trajectory | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-03.html",
-            "date": 1607007683,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
-        {
-            "headline": "Advent of Code Day #02",
-            "summary": "Day Two: Password Philosophy | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-02.html",
-            "date": 1606903366,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
-        {
-            "headline": "Advent of Code Day #01",
-            "summary": "Day One: Report Repair | Advent of Code 2020",
-            "link": "/blog/advent-of-code-day-01.html",
-            "date": 1606820458,
-            "tags": [
-                "Advent",
-                "Python"
-            ]
-        },
+        }
     ]
 }
