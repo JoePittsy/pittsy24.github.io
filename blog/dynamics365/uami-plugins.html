@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   User-Assigned Managed Identities for Dynamics 365 Plugins - The Bits the Docs Don't Tell You
+  </title>
+  <meta content="Wiring a User-Assigned Managed Identity to a Dynamics 365 plugin? The happy path is documented well enough. Here are the two configuration gotchas that'll have you staring at a trace log instead." name="description"/>
+  <meta content="Joe Pitts" name="author"/>
+  <!-- Google tag (gtag.js) -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-M0ZC1GPXTF">
+  </script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-M0ZC1GPXTF');
+  </script>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@JoePittsy" name="twitter:site"/>
+  <meta content="@JoePittsy" name="twitter:creator"/>
+  <meta content="Wiring a User-Assigned Managed Identity to a Dynamics 365 plugin? The happy path is documented well enough. Here are the two configuration gotchas that'll have you staring at a trace log instead." name="twitter:description"/>
+  <meta content="Joe Pitts | User-Assigned Managed Identities for Dynamics 365 Plugins - The Bits the Docs Don't Tell You" name="twitter:title"/>
+  <meta content="placeholder" name="twitter:image"/>
+  <meta content="article" property="og:type"/>
+  <meta content="User-Assigned Managed Identities for Dynamics 365 Plugins - The Bits the Docs Don't Tell You" property="og:title"/>
+  <meta content="Wiring a User-Assigned Managed Identity to a Dynamics 365 plugin? The happy path is documented well enough. Here are the two configuration gotchas that'll have you staring at a trace log instead." property="og:description"/>
+  <meta content="https://joepitts.co.uk/blog/dynamics365/uami-plugins.html" property="og:url"/>
+  <meta content="placeholder" property="og:image"/>
+  <script src="/js/darkMode.js" type="text/javascript">
+  </script>
+  <script src="/js/clipboard.min.js">
+  </script>
+  <link href="/resources/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/resources/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/resources/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/resources/site.webmanifest" rel="manifest"/>
+  <link href="/resources/safari-pinned-tab.svg" rel="mask-icon"/>
+  <meta content="#da532c" name="msapplication-TileColor"/>
+  <meta content="#ffffff" name="theme-color"/>
+  <link href="/blog.css" rel="stylesheet" type="text/css"/>
+  <link href="/style.css" rel="stylesheet" type="text/css"/>
+  <link href="/code_styles.css" rel="stylesheet" type="text/css"/>
+  <noscript>
+   <style>
+    .jsonly {
+                display: none
+            }
+   </style>
+  </noscript>
+  <script type="application/ld+json">
+   {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "User-Assigned Managed Identities for Dynamics 365 Plugins - The Bits the Docs Don't Tell You",
+    "description": "Wiring a User-Assigned Managed Identity to a Dynamics 365 plugin? The happy path is documented well enough. Here are the two configuration gotchas that'll have you staring at a trace log instead.",
+    "datePublished": "2026-07-02",
+    "author": {
+        "@type": "Person",
+        "name": "Joe Pitts",
+        "additionalName": "David",
+        "affiliation": "TrueNorthIT",
+        "jobTitle": "Senior Solutions Developer",
+        "url": "https://joepitts.co.uk",
+        "sameAs": [
+            "https://www.facebook.com/Joe.Pittsy",
+            "https://www.linkedin.com/in/JoePittsy",
+            "https://twitter.com/JoePittsy",
+            "https://www.instagram.com/JoePittsy/"
+        ]
+    },
+    "keywords": "Dynamics365,Azure"
+}
+  </script>
+  <link href="https://joepitts.co.uk/blog/dynamics365/uami-plugins.html" rel="canonical"/>
+ </head>
+ <body link="black" style="height: auto;">
+  <div class="content" id="content">
+   <header>
+    <div id="container">
+     <div id="header">
+      <img alt="Joe Pitts" id="logo" src="/resources/JoePitts.jpg" title="Joe Pitts" width="10%"/>
+      <nav id="normalMenu">
+       <ul class="menu">
+        <li>
+         <a href="/">
+          Home
+         </a>
+        </li>
+        <li>
+         <a href="/blog" id="currentPage">
+          Blog
+         </a>
+        </li>
+        <li>
+         <a href="/work.html">
+          My Work
+         </a>
+        </li>
+        <li>
+         <a href="/games/">
+          Games
+         </a>
+        </li>
+        <li id="darkItem">
+         <img alt="Toggle dark mode" class="toggleDark" onclick="toggleNightMode()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleNightMode()" role="button" src="/resources/moon.svg" tabindex="0"/>
+        </li>
+       </ul>
+      </nav>
+     </div>
+    </div>
+   </header>
+   <hr/>
+   <div class="blogPost">
+    <span id="titleAndReadingTime">
+     <h1 id="blogPostTitle">
+      User-Assigned Managed Identities for Dynamics 365 Plugins - The Bits the Docs Don't Tell You
+     </h1>
+     <span id="readingTime">
+      <date id="publicationDate">
+       02 July 2026
+      </date>
+      |
+      <p id="estimatedReadingTime">
+       7-12 Minutes
+      </p>
+     </span>
+    </span>
+    <article id="blogPostContent">
+     <p>
+      <a class="anchor" href="#what_are_we_doing?">
+       <h2 id="what_are_we_doing?">
+        What are we doing?
+       </h2>
+      </a>
+     </p>
+     <p>
+      If you need a Dynamics 365 plugin to talk to Azure, publish to Event Grid, call a downstream API, anything that needs a token, you don't want to be hardcoding credentials. The supported way is to associate a Managed Identity with the plugin and let the platform's
+      <code>
+       IManagedIdentityService
+      </code>
+      hand you tokens at runtime.
+     </p>
+     <p>
+      User-Assigned Managed Identities are usually the right choice in enterprise setups. They're portable across environments and they have their own lifecycle, independent of any single resource, which makes them much easier to deal with in an ALM pipeline than a system-assigned one.
+     </p>
+     <p>
+      The catch is that three things all have to line up:
+     </p>
+     <ol>
+      <li>
+       A
+       <strong>
+        UAMI
+       </strong>
+       in Azure with an app registration
+      </li>
+      <li>
+       A
+       <strong>
+        Federated Identity Credential (FIC)
+       </strong>
+       on that app registration, scoped to the specific plugin package
+      </li>
+      <li>
+       The identity
+       <strong>
+        linked to the plugin package
+       </strong>
+       in Dataverse via the
+       <code>
+        pac
+       </code>
+       CLI
+      </li>
+     </ol>
+     <p>
+      Get any one of those wrong and it fails before your plugin code even runs.
+     </p>
+     <p>
+      <a class="anchor" href="#the_error">
+       <h2 id="the_error">
+        The error
+       </h2>
+      </a>
+     </p>
+     <p>
+      Here's what you'll actually see, a trace log entry along these lines:
+     </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="code">
+        CODE
+       </span>
+       <span data-clipboard-target="#code-9ee2884ccfb14432b68db05278c05e4b" id="code-9ee2884ccfb14432b68db05278c05e4b-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-9ee2884ccfb14432b68db05278c05e4b"><span></span><code>Unhandled Exception: System.Exception: ManagedIdentityServiceProviderAcquireToken...
+</code></pre>
+      </div>
+     </div>
+     <p>
+      The useful thing to notice is that this is a
+      <strong>
+       platform-level failure
+      </strong>
+      . It happens as Dataverse initialises the execution context, before your
+      <code>
+       Execute
+      </code>
+      method runs at all. So it's a configuration problem, not a code one, which narrows things down straight away.
+     </p>
+     <p>
+      <a class="anchor" href="#gotcha_1:_assembly_vs_package">
+       <h2 id="gotcha_1:_assembly_vs_package">
+        Gotcha 1: Assembly vs Package
+       </h2>
+      </a>
+     </p>
+     <p>
+      The easiest mistake to make here is linking the managed identity to the plugin
+      <strong>
+       assembly
+      </strong>
+      when you should be linking it to the plugin
+      <strong>
+       package
+      </strong>
+      .
+     </p>
+     <p>
+      If you deployed with a NuGet package (the modern, recommended approach), the component you link against is
+      <code>
+       PluginPackage
+      </code>
+      , not
+      <code>
+       PluginAssembly
+      </code>
+      . They're separate component types in Dataverse and the identity link doesn't carry over between them.
+     </p>
+     <p>
+      You can check what you've got with:
+     </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="bash">
+        BASH
+       </span>
+       <span data-clipboard-target="#code-18b9b465744d4350847a50a0fd528e31" id="code-18b9b465744d4350847a50a0fd528e31-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-18b9b465744d4350847a50a0fd528e31"><span></span><code>pac<span class="w"> </span>managed-identity<span class="w"> </span>get<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-id<span class="w"> </span>&lt;your-component-guid&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-type<span class="w"> </span>PluginAssembly
+</code></pre>
+      </div>
+     </div>
+     <p>
+      If that returns a result and your plugin is deployed as a package, that's your problem. Delete it and recreate it against the package:
+     </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="bash">
+        BASH
+       </span>
+       <span data-clipboard-target="#code-1b9f51e7159a47798fc05b7533f9f16d" id="code-1b9f51e7159a47798fc05b7533f9f16d-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-1b9f51e7159a47798fc05b7533f9f16d"><span></span><code><span class="c1"># Remove the incorrect assembly link</span>
+pac<span class="w"> </span>managed-identity<span class="w"> </span>delete<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-id<span class="w"> </span>&lt;assembly-guid&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-type<span class="w"> </span>PluginAssembly
+
+<span class="c1"># Find your package GUID if you don't have it</span>
+pac<span class="w"> </span>env<span class="w"> </span>fetch<span class="w"> </span>--xml<span class="w"> </span><span class="s2">"&lt;fetch&gt;&lt;entity name='pluginpackage'&gt;&lt;attribute name='pluginpackageid'/&gt;&lt;attribute name='name'/&gt;&lt;/entity&gt;&lt;/fetch&gt;"</span>
+
+<span class="c1"># Link to the package instead</span>
+pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-id<span class="w"> </span>&lt;package-guid&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-type<span class="w"> </span>PluginPackage<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--managed-identity-id<span class="w"> </span>&lt;uami-client-id&gt;
+</code></pre>
+      </div>
+     </div>
+     <p>
+      One tip on that
+      <code>
+       pac env fetch
+      </code>
+      output. Don't skip a fixed number of header lines to get at the data,
+      <code>
+       pac
+      </code>
+      prefixes its output with a "Connected as..." line that varies. Grep for the lines that look like GUIDs instead:
+     </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="bash">
+        BASH
+       </span>
+       <span data-clipboard-target="#code-66588e3d891e4ab79c788d9745ce1eb0" id="code-66588e3d891e4ab79c788d9745ce1eb0-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-66588e3d891e4ab79c788d9745ce1eb0"><span></span><code>pac<span class="w"> </span>env<span class="w"> </span>fetch<span class="w"> </span>--xml<span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"^[0-9a-f]{8}-"</span>
+</code></pre>
+      </div>
+     </div>
+     <p>
+      <a class="anchor" href="#gotcha_2:_the_missing_federated_identity_credential">
+       <h2 id="gotcha_2:_the_missing_federated_identity_credential">
+        Gotcha 2: The missing Federated Identity Credential
+       </h2>
+      </a>
+     </p>
+     <p>
+      Even with the identity correctly linked to the package, token acquisition still fails if the Federated Identity Credential hasn't been added to the app registration in Azure.
+     </p>
+     <p>
+      The FIC tells Azure AD which issuer and subject are allowed to exchange tokens on behalf of the identity. Dataverse generates a unique subject for each environment/package combination, and there's no way to know that value without asking Dataverse for it:
+     </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="bash">
+        BASH
+       </span>
+       <span data-clipboard-target="#code-4a6928038d964f9293a0affe11babc56" id="code-4a6928038d964f9293a0affe11babc56-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-4a6928038d964f9293a0affe11babc56"><span></span><code>pac<span class="w"> </span>managed-identity<span class="w"> </span>verify-fic<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-id<span class="w"> </span>&lt;package-guid&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-type<span class="w"> </span>PluginPackage
+</code></pre>
+      </div>
+     </div>
+     <p>
+      That returns the exact values you need, something like:
+     </p>
+     <ul>
+      <li>
+       <strong>
+        Issuer:
+       </strong>
+       <code>
+        https://login.microsoftonline.com/&lt;tenant-id&gt;/v2.0
+       </code>
+      </li>
+      <li>
+       <strong>
+        Subject:
+       </strong>
+       <code>
+        /eid1/c/pub/t/&lt;tenant-hash&gt;/e/&lt;env-hash&gt;/h/&lt;component-hash&gt;
+       </code>
+      </li>
+      <li>
+       <strong>
+        Audience:
+       </strong>
+       <code>
+        api://AzureADTokenExchange
+       </code>
+      </li>
+     </ul>
+     <p>
+      Take those to the app registration in the Azure portal →
+      <strong>
+       Certificates &amp; secrets → Federated credentials → Add credential
+      </strong>
+      , choose
+      <em>
+       Other issuer
+      </em>
+      , and paste them in. The name is arbitrary.
+     </p>
+     <p>
+      Save it, run
+      <code>
+       verify-fic
+      </code>
+      again, and it should confirm the credential is present and valid.
+     </p>
+     <p>
+      <a class="anchor" href="#in_your_plugin_code">
+       <h2 id="in_your_plugin_code">
+        In your plugin code
+       </h2>
+      </a>
+     </p>
+     <p>
+      Once the configuration is right, acquiring a token is the straightforward part:
+     </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="csharp">
+        CSHARP
+       </span>
+       <span data-clipboard-target="#code-ebead082648847c2bbe22e9d6720d225" id="code-ebead082648847c2bbe22e9d6720d225-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-ebead082648847c2bbe22e9d6720d225"><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Execute</span><span class="p">(</span><span class="n">IServiceProvider</span><span class="w"> </span><span class="n">serviceProvider</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IPluginExecutionContext</span><span class="p">)</span><span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IPluginExecutionContext</span><span class="p">));</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">serviceFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IOrganizationServiceFactory</span><span class="p">)</span><span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IOrganizationServiceFactory</span><span class="p">));</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">managedIdentityService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IManagedIdentityService</span><span class="p">)</span><span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IManagedIdentityService</span><span class="p">));</span>
+
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">managedIdentityService</span><span class="p">.</span><span class="n">AcquireToken</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">"https://eventgrid.azure.net/.default"</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Use token.AccessToken with your HttpClient / Azure SDK client</span>
+<span class="p">}</span>
+</code></pre>
+      </div>
+     </div>
+     <p>
+      <code>
+       IManagedIdentityService
+      </code>
+      is the platform's own token vending interface, it handles the federated credential exchange internally. You don't need to implement any of that yourself.
+     </p>
+     <p>
+      <a class="anchor" href="#a_note_on_azure_sdk_versions">
+       <h2 id="a_note_on_azure_sdk_versions">
+        A note on Azure SDK versions
+       </h2>
+      </a>
+     </p>
+     <p>
+      If you're using the Azure SDK (
+      <code>
+       Azure.Core
+      </code>
+      ,
+      <code>
+       Azure.Messaging.EventGrid
+      </code>
+      and so on) inside your plugin, be aware that the Dataverse sandbox has its own version of
+      <code>
+       Azure.Core
+      </code>
+      pre-loaded. At the time of writing that's
+      <code>
+       1.50.0
+      </code>
+      .
+     </p>
+     <p>
+      Bundle a different version without accounting for it and you'll hit a
+      <code>
+       TypeLoadException
+      </code>
+      during registration, a completely separate failure from the UAMI config above, but just as opaque.
+     </p>
+     <p>
+      The fix is to compile against the sandbox version and exclude it from the bundle:
+     </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="xml">
+        XML
+       </span>
+       <span data-clipboard-target="#code-112919fc72e347cc9e12f1f49a858b09" id="code-112919fc72e347cc9e12f1f49a858b09-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-112919fc72e347cc9e12f1f49a858b09"><span></span><code><span class="nt">&lt;PackageReference</span><span class="w"> </span><span class="na">Include=</span><span class="s">"Azure.Core"</span><span class="w"> </span><span class="na">Version=</span><span class="s">"1.50.0"</span>
+<span class="w">  </span><span class="na">ExcludeAssets=</span><span class="s">"runtime"</span><span class="w"> </span><span class="na">PrivateAssets=</span><span class="s">"all"</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre>
+      </div>
+     </div>
+     <p>
+      The Dependent Assemblies packaging approach handles the rest, but that's probably worth its own post.
+     </p>
+     <p>
+      <a class="anchor" href="#final_thoughts">
+       <h2 id="final_thoughts">
+        Final Thoughts
+       </h2>
+      </a>
+     </p>
+     <p>
+      Once it's set up, UAMIs are the right way to do this, no secrets stored in your plugin and tokens handed to you on demand.
+     </p>
+     <p>
+      The pain is all in the plumbing. Both gotchas surface as the
+      <em>
+       same
+      </em>
+      platform-level trace error, which makes them easy to conflate, so when you hit it, check them in order:
+     </p>
+     <ol>
+      <li>
+       <strong>
+        Component type
+       </strong>
+       - is the identity linked to
+       <code>
+        PluginPackage
+       </code>
+       and not
+       <code>
+        PluginAssembly
+       </code>
+       ?
+      </li>
+      <li>
+       <strong>
+        The FIC
+       </strong>
+       - run
+       <code>
+        pac managed-identity verify-fic
+       </code>
+       and confirm the credential is on the app registration with the exact issuer/subject Dataverse expects.
+      </li>
+     </ol>
+     <p>
+      Check those two before you touch any code and you'll save yourself a lot of time.
+     </p>
+     <p>
+      <a class="anchor" href="#references_and_resources">
+       <h2 id="references_and_resources">
+        References and Resources
+       </h2>
+      </a>
+     </p>
+     <ul>
+      <li>
+       <a href="https://learn.microsoft.com/en-us/power-platform/admin/set-up-managed-identity">
+        Set up Power Platform managed identity for Dataverse plug-ins
+       </a>
+      </li>
+      <li>
+       <a href="https://learn.microsoft.com/en-us/power-platform/admin/managed-identity-overview">
+        Power Platform managed identity overview
+       </a>
+      </li>
+      <li>
+       <a href="https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/managed-identity">
+        pac managed-identity command reference
+       </a>
+      </li>
+      <li>
+       <a href="https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation">
+        Workload identity federation
+       </a>
+      </li>
+     </ul>
+    </article>
+   </div>
+   <p>
+   </p>
+   <div id="disqus_thread">
+   </div>
+  </div>
+  <script>
+   (function () {
+            // DON'T EDIT BELOW THIS LINEx
+            var d = document,
+                s = d.createElement("script");
+            s.src = "https://joepitts-co-uk.disqus.com/embed.js";
+            s.setAttribute("data-timestamp", +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+  </script>
+  <noscript>
+   Please enable JavaScript to view the
+   <a href="https://disqus.com/?ref_noscript">
+    comments powered by Disqus.
+   </a>
+  </noscript>
+  <div class="footer">
+   <ul class="footerContainer">
+    <li>
+     <p class="copyright">
+      Copyright © 2018-2026, Joe Pitts. All rights reserved.
+     </p>
+    </li>
+    <li>
+     <a href="https://www.linkedin.com/in/joepittsy">
+      <img alt="LinkedIn" class="footerLogo" src="/resources/ln.svg"/>
+     </a>
+    </li>
+    <li>
+     <a href="https://github.com/JoePittsy">
+      <img alt="GitHub" class="footerLogo" src="/resources/github.svg"/>
+     </a>
+    </li>
+    <li>
+     <a href="https://twitter.com/JoePittsy">
+      <img alt="X (Twitter)" class="footerLogo" src="/resources/twitter.svg"/>
+     </a>
+    </li>
+   </ul>
+   <div class="mobileFooterContainer">
+    <p class="copyright">
+     Copyright © 2018-2026, Joe Pitts. All rights reserved.
+    </p>
+    <div class="mobileFooter">
+     <a href="https://www.linkedin.com/in/joepittsy">
+      <img alt="LinkedIn" class="footerLogo" src="/resources/ln.svg"/>
+     </a>
+     <a href="https://github.com/JoePittsy">
+      <img alt="GitHub" class="footerLogo" src="/resources/github.svg"/>
+     </a>
+     <a href="https://twitter.com/JoePittsy">
+      <img alt="X (Twitter)" class="footerLogo" src="/resources/twitter.svg"/>
+     </a>
+    </div>
+   </div>
+  </div>
+  <script defer="">
+   (function () {
+            // This should include all of the code snippets
+            new ClipboardJS("#code-9ee2884ccfb14432b68db05278c05e4b-btn,#code-18b9b465744d4350847a50a0fd528e31-btn,#code-1b9f51e7159a47798fc05b7533f9f16d-btn,#code-66588e3d891e4ab79c788d9745ce1eb0-btn,#code-4a6928038d964f9293a0affe11babc56-btn,#code-ebead082648847c2bbe22e9d6720d225-btn,#code-112919fc72e347cc9e12f1f49a858b09-btn");
+        })();
+  </script>
+ </body>
+</html>

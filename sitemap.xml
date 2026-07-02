@@ -46,6 +46,12 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://joepitts.co.uk/blog/dynamics365/uami-plugins.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joepitts.co.uk/blog/dynamics365/attribute-masking-rules.html</loc>
     <lastmod>2025-05-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -203,7 +209,7 @@
   </url>
   <url>
     <loc>https://joepitts.co.uk/blog/</loc>
-    <lastmod>2025-05-09</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
