@@ -271,7 +271,7 @@ def create_html_file(file, yaml_config, html_content, reading_time):
             "name": "Joe Pitts",
             "additionalName": "David",
             "affiliation": "TrueNorthIT",
-            "jobTitle": "Solutions Developer",
+            "jobTitle": "Senior Solutions Developer",
             "url": "https://joepitts.co.uk",
             "sameAs": [
                 "https://www.facebook.com/Joe.Pittsy",

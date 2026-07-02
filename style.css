@@ -364,7 +364,7 @@ html {
 .content {
   margin: 0 auto;
   padding-top: 2%;
-  max-width: 50vw;
+  max-width: min(1180px, 92vw);
   width: 94%;
 }
 
@@ -718,6 +718,13 @@ html[data-theme="dark"] .double-val-label > span {
   background-color: #337ab7;
 }
 
+/* Keep long-form articles at a comfortable reading width even though the page
+   container (nav, footer) is the wider, site-consistent width. */
+.blogPost {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .blogPost p {
   text-align: justify;
   text-justify: inter-word;
@@ -1164,5 +1171,143 @@ h1>input[type="text"]{
   #burger ul li:nth-child(5) {
     animation-delay: 0.2s;
   }
+}
+
+/* ---------- Homepage ---------- */
+.home-hero {
+  padding: 1.5rem 0 2rem;
+}
+.home-hero__stack {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.home-hero__stack li {
+  font-size: 0.8rem;
+  color: var(--nav-fade);
+  border: 1px solid var(--blog-shadow);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+}
+.home-hero__intro h1 {
+  margin: 0 0 0.25rem;
+  font-size: 2.1rem;
+  line-height: 1.1;
+  color: var(--heading-colour);
+}
+.home-hero__role {
+  margin: 0 0 0.9rem;
+  color: var(--link-unvisited);
+  font-weight: 600;
+}
+.home-hero__pitch {
+  margin: 0 0 1rem;
+}
+.home-hero__now {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  color: var(--nav-fade);
+}
+.home-hero__now strong {
+  color: var(--text-colour);
+  font-weight: 600;
+}
+.home-cta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+/* a.btn:link/:visited beats the global a:link/a:visited rules on specificity */
+.home-cta a.btn,
+.home-cta a.btn:link,
+.home-cta a.btn:visited {
+  display: inline-block;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: none;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.home-cta a.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.home-cta a.btn--primary,
+.home-cta a.btn--primary:link,
+.home-cta a.btn--primary:visited {
+  background: var(--link-unvisited);
+  color: #08130d;
+}
+.home-cta a.btn--ghost,
+.home-cta a.btn--ghost:link,
+.home-cta a.btn--ghost:visited {
+  border: 1.5px solid var(--link-unvisited);
+  color: var(--link-unvisited);
+  background: transparent;
+}
+.home-cta a.home-cta__icon,
+.home-cta a.home-cta__icon:link,
+.home-cta a.home-cta__icon:visited {
+  display: inline-flex;
+  box-shadow: none;
+}
+.home-cta__icon img { width: 26px; height: 26px; }
+
+.home-section { margin: 2.75rem 0; }
+.home-section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid var(--blog-shadow);
+  padding-bottom: 0.35rem;
+  margin-bottom: 1rem;
+}
+.home-section__head h2 { margin: 0; font-size: 1.4rem; }
+.home-section__head a {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: none;
+}
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+/* The .blog-container component is tuned for a single-column stack; these
+   overrides make it behave inside the homepage grid (equal-height cards with
+   the tag row pinned to the bottom, and readable multi-line titles). */
+.home-grid .blog-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.home-grid .blog-body { flex: 1 1 auto; }
+.home-grid .blog-title h1 {
+  line-height: 1.2;
+  padding-top: 1rem;
+  margin-bottom: 0.6rem;
+}
+.home-grid .blog-title h1 a {
+  padding-top: 0;
+  font-size: 1.1rem;
+}
+.home-grid .blog-summary { margin-bottom: 1rem; }
+.home-grid .blog-footer { margin-top: auto; }
+.home-grid .blog-footer ul { flex-wrap: wrap; gap: 0.4rem; }
+.home-grid .blog-footer li + li { margin-left: 0; }
+/* Card links must not pick up the global a:link underline box-shadow */
+.home-grid .blog-container a,
+.home-grid .blog-container a:link,
+.home-grid .blog-container a:visited { box-shadow: none; }
+.home-empty { color: var(--nav-fade); font-size: 0.9rem; }
+
+@media all and (max-width: 680px) {
+  .home-hero { justify-content: center; text-align: center; }
+  .home-hero__pitch { margin-left: auto; margin-right: auto; }
+  .home-cta { justify-content: center; }
 }
 

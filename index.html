@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1" name="viewport" />
 
   <title>Joe Pitts | Developer</title>
-  <meta name="description" content="Personal website of Joe Pitts - Solutions Developer." />
+  <meta name="description" content="Personal website of Joe Pitts - Senior Solutions Developer." />
   <link rel="canonical" href="https://joepitts.co.uk/" />
 
   <!-- Google tag (gtag.js) -->
@@ -27,7 +27,7 @@
         "name": "Joe Pitts",
         "additionalName": "David",
         "affiliation": "TrueNorthIT",
-        "jobTitle": "Solutions Developer",
+        "jobTitle": "Senior Solutions Developer",
         "url": "https://joepitts.co.uk",
         "sameAs": [
           "https://www.facebook.com/Joe.Pittsy",
@@ -37,7 +37,7 @@
           "https://github.com/JoePittsy"
         ],
         "image": "https://joepitts.co.uk/resources/JoePitts.jpg",
-        "description": "Joe Pitts, Solutions Developer at TrueNorthIT"
+        "description": "Joe Pitts, Senior Solutions Developer at TrueNorthIT"
       }
     </script>
 
@@ -45,12 +45,12 @@
   <meta name="twitter:site" content="@JoePittsy" />
   <meta name="twitter:creator" content="@JoePittsy" />
   <meta name="twitter:title" content="Joe Pitts | Developer" />
-  <meta name="twitter:description" content="Personal website of Joe Pitts - Solutions Developer." />
+  <meta name="twitter:description" content="Personal website of Joe Pitts - Senior Solutions Developer." />
   <meta name="twitter:image" content="https://joepitts.co.uk/resources/JoePitts.jpg" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Joe Pitts | Developer" />
-  <meta property="og:description" content="Personal website of Joe Pitts - Solutions Developer." />
+  <meta property="og:description" content="Personal website of Joe Pitts - Senior Solutions Developer." />
   <meta property="og:url" content="https://joepitts.co.uk/" />
   <meta property="og:image" content="https://joepitts.co.uk/resources/JoePitts.jpg" />
 
@@ -72,7 +72,7 @@
   </noscript>
 </head>
 
-<body link="black" style="height: auto;">
+<body link="black" class="home" style="height: auto;">
   <div class="content" id="content">
     <header>
       <div id="container">
@@ -101,37 +101,98 @@
       </div>
     </header>
     <hr />
-    <h1>About Me</h1>
-    <p>
-      Hi, I'm Joe. Solutions Developer at <a href="https://truenorthit.co.uk/">TrueNorthIT</a> and Computer Science
-      graduate from the University of Lincoln. This website is a place for me to write about my projects and a place to
-      publish my work and demos. Read my latest blog post on embedding <a
-        href="/blog/dynamics365/inline-charts.html">charts on Dynamics365 forms.</a>
-    </p>
-    <h2>Current Work</h2>
-    <p>
-      I am currently employed as a Solutions Developer, with expertise in Microsoft Dynamics 365, the Power Platform, and Angular web applications. Also the creator of <a href="https://github.com/JoePittsy/Dynamics-Bulk-Role-Updater">Dynamics Bulk Role Updater for XrmToolBox</a>
-    </p>
-    <h3>Contact Me</h3>
-    <p>
-      Send me an email at
-      <!--email_off--><a href="mailto:joepittsy@gmail.com" target="_top">joepittsy@gmail.com</a>
-      <!--/email_off-->
-      or a direct message on either
-      <a href="https://twitter.com/JoePittsy">X</a> or
-      <a href="https://www.linkedin.com/in/joepittsy/">Linkedin.</a>
+
+    <section class="home-hero">
+      <div class="home-hero__intro">
+        <h1>Hi, I'm Joe Pitts</h1>
+        <p class="home-hero__role">Senior Dynamics 365 &amp; Power Platform Developer @ <a href="https://truenorthit.co.uk/">TrueNorthIT</a></p>
+        <p class="home-hero__pitch">
+          I build Microsoft Dynamics 365 and Power Platform solutions &mdash; plus React and Angular
+          portals and the occasional IoT build &mdash; and write about what I learn along the way.
+        </p>
+        <p class="home-hero__now">
+          <strong>Now:</strong> Customer Experience Transformation at Leeds City Council.
+          <strong>Previously:</strong> Redcentric, NHS Scotland, charity &amp; private-sector clients.
+        </p>
+        <div class="home-cta">
+          <a class="btn btn--primary" href="/blog">Read the blog</a>
+          <a class="btn btn--ghost" href="/work.html">See my work</a>
+          <a class="home-cta__icon" href="https://github.com/JoePittsy" title="GitHub" aria-label="GitHub"><img src="/resources/github.svg" alt="GitHub" /></a>
+          <a class="home-cta__icon" href="https://www.linkedin.com/in/joepittsy" title="LinkedIn" aria-label="LinkedIn"><img src="/resources/ln.svg" alt="LinkedIn" /></a>
+        </div>
+        <ul class="home-hero__stack" aria-label="Technologies I work with">
+          <li>Dynamics 365</li>
+          <li>Power Platform</li>
+          <li>Power Automate</li>
+          <li>C#</li>
+          <li>JavaScript</li>
+          <li>React</li>
+          <li>Angular</li>
+          <li>Azure</li>
+          <li>IoT</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="home-section__head">
+        <h2>Latest from the blog</h2>
+        <a href="/blog">All posts &rarr;</a>
+      </div>
+      <div class="home-grid" id="latestPosts">
+        <noscript><p class="home-empty">Head to the <a href="/blog">blog</a> to read the latest posts.</p></noscript>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="home-section__head">
+        <h2>Featured projects</h2>
+        <a href="/work.html">All projects &rarr;</a>
+      </div>
+      <div class="home-grid">
+        <div class="blog-container">
+          <a href="https://github.com/JoePittsy/Dynamics-Bulk-Role-Updater"><span class="blog-link"></span></a>
+          <div class="blog-body">
+            <div class="blog-title"><h1><a href="https://github.com/JoePittsy/Dynamics-Bulk-Role-Updater">Dynamics Bulk Role Updater</a></h1></div>
+            <div class="blog-summary"><p>An XrmToolBox plugin to bulk-assign security roles across users in Dynamics 365 &mdash; a job that's painfully manual out of the box.</p></div>
+          </div>
+          <div class="blog-footer"><ul><li class="type software">Software</li><li class="lang csharp">C#</li><li class="lang dynamics365">Dynamics365</li></ul></div>
+        </div>
+        <div class="blog-container">
+          <a href="https://www.npmjs.com/package/kodi-controller"><span class="blog-link"></span></a>
+          <div class="blog-body">
+            <div class="blog-title"><h1><a href="https://www.npmjs.com/package/kodi-controller">kodi-controller</a></h1></div>
+            <div class="blog-summary"><p>A callback-driven npm package for controlling the Kodi media player from JavaScript. Built for Kontrol, released standalone.</p></div>
+          </div>
+          <div class="blog-footer"><ul><li class="type software">Package</li><li class="lang js">JS</li></ul></div>
+        </div>
+        <div class="blog-container">
+          <a href="https://github.com/JoePittsy/nautilus-new-folder-from-template"><span class="blog-link"></span></a>
+          <div class="blog-body">
+            <div class="blog-title"><h1><a href="https://github.com/JoePittsy/nautilus-new-folder-from-template">Nautilus New Folder Template</a></h1></div>
+            <div class="blog-summary"><p>A GNOME Nautilus extension that creates new folders pre-populated from a template &mdash; scratching my own Linux itch.</p></div>
+          </div>
+          <div class="blog-footer"><ul><li class="type software">Software</li><li class="lang python">Python</li><li class="lang shell">Shell</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="home-empty">
+      Want to get in touch? Email
+      <!--email_off--><a href="mailto:joepittsy@gmail.com" target="_top">joepittsy@gmail.com</a><!--/email_off-->
+      or find me on <a href="https://www.linkedin.com/in/joepittsy/">LinkedIn</a>.
     </p>
   </div>
   <div class="footer">
     <ul class="footerContainer">
-      <li><p class="copyright">Copyright © 2018-2025, Joe Pitts. All rights reserved.</p></li>
+      <li><p class="copyright">Copyright © 2018-2026, Joe Pitts. All rights reserved.</p></li>
       <li><a href="https://www.linkedin.com/in/joepittsy"><img class="footerLogo" alt="LinkedIn" src="/resources/ln.svg"></a></li>
       <li><a href="https://github.com/JoePittsy"><img class="footerLogo" alt="GitHub" src="/resources/github.svg"></a></li>
       <li><a href="https://twitter.com/JoePittsy"><img class="footerLogo" alt="X (Twitter)" src="/resources/twitter.svg"></a></li>
     </ul>
 
     <div class="mobileFooterContainer">
-      <p class="copyright">Copyright © 2018-2025, Joe Pitts. All rights reserved.</p>
+      <p class="copyright">Copyright © 2018-2026, Joe Pitts. All rights reserved.</p>
       <div class="mobileFooter">
         <a href="https://www.linkedin.com/in/joepittsy"><img class="footerLogo" alt="LinkedIn" src="/resources/ln.svg"></a>
         <a href="https://github.com/JoePittsy"><img class="footerLogo" alt="GitHub" src="/resources/github.svg"></a>
@@ -140,6 +201,30 @@
     </div>
 
   </div>
+
+  <script>
+    // Populate "Latest from the blog" from the same data source as the blog index.
+    (function () {
+      var box = document.getElementById('latestPosts');
+      if (!box) return;
+      fetch('/blog/articles.json').then(function (r) { return r.json(); }).then(function (data) {
+        var posts = (data.articles || []).slice(0, 3);
+        if (!posts.length) throw new Error('no posts');
+        box.innerHTML = posts.map(function (p) {
+          var d = new Date(p.date * 1000).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+          var tags = (p.tags || []).map(function (t) {
+            return '<li class="lang ' + t.toLowerCase().replace(/[^a-z0-9]+/g, '') + '">' + t + '</li>';
+          }).join('');
+          return '<div class="blog-container"><a href="' + p.link + '"><span class="blog-link"></span></a>' +
+            '<div class="blog-body"><div class="blog-title"><h1><a href="' + p.link + '">' + p.headline + '</a></h1></div>' +
+            '<div class="blog-summary"><p>' + p.summary + '</p></div></div>' +
+            '<div class="blog-footer"><ul><li class="type date">' + d + '</li>' + tags + '</ul></div></div>';
+        }).join('');
+      }).catch(function () {
+        box.innerHTML = '<p class="home-empty">Head to the <a href="/blog">blog</a> to read the latest posts.</p>';
+      });
+    })();
+  </script>
 </body>
 
 </html>
