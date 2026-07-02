@@ -1,6 +1,16 @@
 {
     "articles": [
         {
+            "headline": "User-Assigned Managed Identities for Dynamics 365 Plugins - The Bits the Docs Don't Tell You",
+            "summary": "Wiring a User-Assigned Managed Identity to a Dynamics 365 plugin? The happy path is documented well enough. Here are the two configuration gotchas that'll have you staring at a trace log instead.",
+            "link": "/blog/dynamics365/uami-plugins.html",
+            "date": 1782950400.0,
+            "tags": [
+                "Dynamics365",
+                "Azure"
+            ]
+        },
+        {
             "headline": "Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE",
             "summary": "Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples.",
             "link": "/blog/dynamics365/attribute-masking-rules.html",
