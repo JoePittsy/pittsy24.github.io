@@ -123,7 +123,7 @@
       </date>
       |
       <p id="estimatedReadingTime">
-       7-12 Minutes
+       9-16 Minutes
       </p>
      </span>
     </span>
@@ -146,9 +146,16 @@
       User-Assigned Managed Identities are usually the right choice in enterprise setups. They're portable across environments and they have their own lifecycle, independent of any single resource, which makes them much easier to deal with in an ALM pipeline than a system-assigned one.
      </p>
      <p>
-      The catch is that three things all have to line up:
+      The catch is that a few things all have to line up:
      </p>
      <ol>
+      <li>
+       Your
+       <strong>
+        plugin package is signed
+       </strong>
+       with a certificate (more on why in a second)
+      </li>
       <li>
        A
        <strong>
@@ -179,6 +186,23 @@
       Get any one of those wrong and it fails before your plugin code even runs.
      </p>
      <p>
+      <a class="anchor" href="#prerequisite:_your_plugin_must_be_signed">
+       <h2 id="prerequisite:_your_plugin_must_be_signed">
+        Prerequisite: your plugin must be signed
+       </h2>
+      </a>
+     </p>
+     <p>
+      Before any of the identity plumbing matters, your plugin assembly or package has to be
+      <strong>
+       signed with a certificate
+      </strong>
+      . This isn't optional and it isn't a nice-to-have, the FIC subject that Dataverse computes is derived from the SHA-256 hash of that signing certificate. No signature, no subject, and nothing downstream works.
+     </p>
+     <p>
+      I'm not going to cover the full signing flow here (it's a post in its own right), but know that it's step zero. If you're following along and things fall apart before you even reach the FIC, this is almost certainly why.
+     </p>
+     <p>
       <a class="anchor" href="#the_error">
        <h2 id="the_error">
         The error
@@ -193,12 +217,12 @@
        <span class="code">
         CODE
        </span>
-       <span data-clipboard-target="#code-9ee2884ccfb14432b68db05278c05e4b" id="code-9ee2884ccfb14432b68db05278c05e4b-btn">
+       <span data-clipboard-target="#code-4e9505fd4dbb4f19af780c2c17ed5a19" id="code-4e9505fd4dbb4f19af780c2c17ed5a19-btn">
         Copy
        </span>
       </div>
       <div class="codehilite">
-       <pre id="code-9ee2884ccfb14432b68db05278c05e4b"><span></span><code>Unhandled Exception: System.Exception: ManagedIdentityServiceProviderAcquireToken...
+       <pre id="code-4e9505fd4dbb4f19af780c2c17ed5a19"><span></span><code>Unhandled Exception: System.Exception: ManagedIdentityServiceProviderAcquireToken...
 </code></pre>
       </div>
      </div>
@@ -250,12 +274,12 @@
        <span class="bash">
         BASH
        </span>
-       <span data-clipboard-target="#code-18b9b465744d4350847a50a0fd528e31" id="code-18b9b465744d4350847a50a0fd528e31-btn">
+       <span data-clipboard-target="#code-a424ed0946f249f4a224b35fe429130d" id="code-a424ed0946f249f4a224b35fe429130d-btn">
         Copy
        </span>
       </div>
       <div class="codehilite">
-       <pre id="code-18b9b465744d4350847a50a0fd528e31"><span></span><code>pac<span class="w"> </span>managed-identity<span class="w"> </span>get<span class="w"> </span><span class="se">\</span>
+       <pre id="code-a424ed0946f249f4a224b35fe429130d"><span></span><code>pac<span class="w"> </span>managed-identity<span class="w"> </span>get<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--component-id<span class="w"> </span>&lt;your-component-guid&gt;<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--component-type<span class="w"> </span>PluginAssembly
 </code></pre>
@@ -269,12 +293,12 @@
        <span class="bash">
         BASH
        </span>
-       <span data-clipboard-target="#code-1b9f51e7159a47798fc05b7533f9f16d" id="code-1b9f51e7159a47798fc05b7533f9f16d-btn">
+       <span data-clipboard-target="#code-70575ff9129346d5b692497a904c4924" id="code-70575ff9129346d5b692497a904c4924-btn">
         Copy
        </span>
       </div>
       <div class="codehilite">
-       <pre id="code-1b9f51e7159a47798fc05b7533f9f16d"><span></span><code><span class="c1"># Remove the incorrect assembly link</span>
+       <pre id="code-70575ff9129346d5b692497a904c4924"><span></span><code><span class="c1"># Remove the incorrect assembly link</span>
 pac<span class="w"> </span>managed-identity<span class="w"> </span>delete<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--component-id<span class="w"> </span>&lt;assembly-guid&gt;<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--component-type<span class="w"> </span>PluginAssembly
@@ -286,7 +310,8 @@ pac<span class="w"> </span>env<span class="w"> </span>fetch<span class="w"> </sp
 pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--component-id<span class="w"> </span>&lt;package-guid&gt;<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--component-type<span class="w"> </span>PluginPackage<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--managed-identity-id<span class="w"> </span>&lt;uami-client-id&gt;
+<span class="w">  </span>--application-id<span class="w"> </span>&lt;uami-client-id&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tenant-id<span class="w"> </span>&lt;tenant-id&gt;
 </code></pre>
       </div>
      </div>
@@ -306,12 +331,12 @@ pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span c
        <span class="bash">
         BASH
        </span>
-       <span data-clipboard-target="#code-66588e3d891e4ab79c788d9745ce1eb0" id="code-66588e3d891e4ab79c788d9745ce1eb0-btn">
+       <span data-clipboard-target="#code-802a8dbda53b4f2cacf6c9e8c533ea18" id="code-802a8dbda53b4f2cacf6c9e8c533ea18-btn">
         Copy
        </span>
       </div>
       <div class="codehilite">
-       <pre id="code-66588e3d891e4ab79c788d9745ce1eb0"><span></span><code>pac<span class="w"> </span>env<span class="w"> </span>fetch<span class="w"> </span>--xml<span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"^[0-9a-f]{8}-"</span>
+       <pre id="code-802a8dbda53b4f2cacf6c9e8c533ea18"><span></span><code>pac<span class="w"> </span>env<span class="w"> </span>fetch<span class="w"> </span>--xml<span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"^[0-9a-f]{8}-"</span>
 </code></pre>
       </div>
      </div>
@@ -326,19 +351,23 @@ pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span c
       Even with the identity correctly linked to the package, token acquisition still fails if the Federated Identity Credential hasn't been added to the app registration in Azure.
      </p>
      <p>
-      The FIC tells Azure AD which issuer and subject are allowed to exchange tokens on behalf of the identity. Dataverse generates a unique subject for each environment/package combination, and there's no way to know that value without asking Dataverse for it:
+      The FIC tells Azure AD which issuer and subject are allowed to exchange tokens on behalf of the identity. Dataverse generates a unique subject for each environment/package combination, and there's no way to know that value without asking Dataverse for it. That's what
+      <code>
+       show-fic
+      </code>
+      is for, it prints the computed values:
      </p>
      <div class="codeSnippet">
       <div class="double-val-label">
        <span class="bash">
         BASH
        </span>
-       <span data-clipboard-target="#code-4a6928038d964f9293a0affe11babc56" id="code-4a6928038d964f9293a0affe11babc56-btn">
+       <span data-clipboard-target="#code-bef4569166bd445793ed40b243336c34" id="code-bef4569166bd445793ed40b243336c34-btn">
         Copy
        </span>
       </div>
       <div class="codehilite">
-       <pre id="code-4a6928038d964f9293a0affe11babc56"><span></span><code>pac<span class="w"> </span>managed-identity<span class="w"> </span>verify-fic<span class="w"> </span><span class="se">\</span>
+       <pre id="code-bef4569166bd445793ed40b243336c34"><span></span><code>pac<span class="w"> </span>managed-identity<span class="w"> </span>show-fic<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--component-id<span class="w"> </span>&lt;package-guid&gt;<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--component-type<span class="w"> </span>PluginPackage
 </code></pre>
@@ -385,12 +414,48 @@ pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span c
       , and paste them in. The name is arbitrary.
      </p>
      <p>
-      Save it, run
+      Once it's saved, confirm the credential is actually in place with
       <code>
        verify-fic
       </code>
-      again, and it should confirm the credential is present and valid.
+      , which is the check step (don't confuse it with
+      <code>
+       show-fic
+      </code>
+      , one shows you the values, the other verifies they've landed):
      </p>
+     <div class="codeSnippet">
+      <div class="double-val-label">
+       <span class="bash">
+        BASH
+       </span>
+       <span data-clipboard-target="#code-74d458e0503c42e6ae00b8c7aabadf4d" id="code-74d458e0503c42e6ae00b8c7aabadf4d-btn">
+        Copy
+       </span>
+      </div>
+      <div class="codehilite">
+       <pre id="code-74d458e0503c42e6ae00b8c7aabadf4d"><span></span><code>pac<span class="w"> </span>managed-identity<span class="w"> </span>verify-fic<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-id<span class="w"> </span>&lt;package-guid&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--component-type<span class="w"> </span>PluginPackage
+</code></pre>
+      </div>
+     </div>
+     <blockquote>
+      <p>
+       <strong>
+        Footnote:
+       </strong>
+       there's also a
+       <code>
+        pac managed-identity configure-fic
+       </code>
+       command (Preview at the time of writing) that can automate the Azure portal step for you. If it's available in your CLI version it'll save you the copy-paste, but I'd still run
+       <code>
+        verify-fic
+       </code>
+       afterwards to be sure.
+      </p>
+     </blockquote>
      <p>
       <a class="anchor" href="#in_your_plugin_code">
        <h2 id="in_your_plugin_code">
@@ -406,20 +471,21 @@ pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span c
        <span class="csharp">
         CSHARP
        </span>
-       <span data-clipboard-target="#code-ebead082648847c2bbe22e9d6720d225" id="code-ebead082648847c2bbe22e9d6720d225-btn">
+       <span data-clipboard-target="#code-59e778a5916940938ee15907a9b7bfd0" id="code-59e778a5916940938ee15907a9b7bfd0-btn">
         Copy
        </span>
       </div>
       <div class="codehilite">
-       <pre id="code-ebead082648847c2bbe22e9d6720d225"><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Execute</span><span class="p">(</span><span class="n">IServiceProvider</span><span class="w"> </span><span class="n">serviceProvider</span><span class="p">)</span>
+       <pre id="code-59e778a5916940938ee15907a9b7bfd0"><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Execute</span><span class="p">(</span><span class="n">IServiceProvider</span><span class="w"> </span><span class="n">serviceProvider</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IPluginExecutionContext</span><span class="p">)</span><span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IPluginExecutionContext</span><span class="p">));</span>
 <span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">serviceFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IOrganizationServiceFactory</span><span class="p">)</span><span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IOrganizationServiceFactory</span><span class="p">));</span>
 <span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">managedIdentityService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IManagedIdentityService</span><span class="p">)</span><span class="n">serviceProvider</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IManagedIdentityService</span><span class="p">));</span>
 
-<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">managedIdentityService</span><span class="p">.</span><span class="n">AcquireToken</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">"https://eventgrid.azure.net/.default"</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// AcquireToken returns the access token string directly, not a token object</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">managedIdentityService</span><span class="p">.</span><span class="n">AcquireToken</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">"https://eventgrid.azure.net/.default"</span><span class="w"> </span><span class="p">});</span>
 
-<span class="w">    </span><span class="c1">// Use token.AccessToken with your HttpClient / Azure SDK client</span>
+<span class="w">    </span><span class="c1">// Use accessToken with your HttpClient / Azure SDK client</span>
 <span class="p">}</span>
 </code></pre>
       </div>
@@ -471,12 +537,12 @@ pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span c
        <span class="xml">
         XML
        </span>
-       <span data-clipboard-target="#code-112919fc72e347cc9e12f1f49a858b09" id="code-112919fc72e347cc9e12f1f49a858b09-btn">
+       <span data-clipboard-target="#code-6369e86a94fa4586b8c69c008ef83fed" id="code-6369e86a94fa4586b8c69c008ef83fed-btn">
         Copy
        </span>
       </div>
       <div class="codehilite">
-       <pre id="code-112919fc72e347cc9e12f1f49a858b09"><span></span><code><span class="nt">&lt;PackageReference</span><span class="w"> </span><span class="na">Include=</span><span class="s">"Azure.Core"</span><span class="w"> </span><span class="na">Version=</span><span class="s">"1.50.0"</span>
+       <pre id="code-6369e86a94fa4586b8c69c008ef83fed"><span></span><code><span class="nt">&lt;PackageReference</span><span class="w"> </span><span class="na">Include=</span><span class="s">"Azure.Core"</span><span class="w"> </span><span class="na">Version=</span><span class="s">"1.50.0"</span>
 <span class="w">  </span><span class="na">ExcludeAssets=</span><span class="s">"runtime"</span><span class="w"> </span><span class="na">PrivateAssets=</span><span class="s">"all"</span><span class="w"> </span><span class="nt">/&gt;</span>
 </code></pre>
       </div>
@@ -499,9 +565,15 @@ pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span c
       <em>
        same
       </em>
-      platform-level trace error, which makes them easy to conflate, so when you hit it, check them in order:
+      platform-level trace error, which makes them easy to conflate, so when you hit it, work through it in order:
      </p>
      <ol>
+      <li>
+       <strong>
+        Signing
+       </strong>
+       - is the package actually signed? Everything downstream hangs off that certificate.
+      </li>
       <li>
        <strong>
         Component type
@@ -522,13 +594,17 @@ pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span c
        </strong>
        - run
        <code>
-        pac managed-identity verify-fic
+        pac managed-identity show-fic
        </code>
-       and confirm the credential is on the app registration with the exact issuer/subject Dataverse expects.
+       to get the values, add them to the app registration, then
+       <code>
+        verify-fic
+       </code>
+       to confirm they've landed with the exact issuer/subject Dataverse expects.
       </li>
      </ol>
      <p>
-      Check those two before you touch any code and you'll save yourself a lot of time.
+      Check those before you touch any code and you'll save yourself a lot of time.
      </p>
      <p>
       <a class="anchor" href="#references_and_resources">
@@ -625,7 +701,7 @@ pac<span class="w"> </span>managed-identity<span class="w"> </span>create<span c
   <script defer="">
    (function () {
             // This should include all of the code snippets
-            new ClipboardJS("#code-9ee2884ccfb14432b68db05278c05e4b-btn,#code-18b9b465744d4350847a50a0fd528e31-btn,#code-1b9f51e7159a47798fc05b7533f9f16d-btn,#code-66588e3d891e4ab79c788d9745ce1eb0-btn,#code-4a6928038d964f9293a0affe11babc56-btn,#code-ebead082648847c2bbe22e9d6720d225-btn,#code-112919fc72e347cc9e12f1f49a858b09-btn");
+            new ClipboardJS("#code-4e9505fd4dbb4f19af780c2c17ed5a19-btn,#code-a424ed0946f249f4a224b35fe429130d-btn,#code-70575ff9129346d5b692497a904c4924-btn,#code-802a8dbda53b4f2cacf6c9e8c533ea18-btn,#code-bef4569166bd445793ed40b243336c34-btn,#code-74d458e0503c42e6ae00b8c7aabadf4d-btn,#code-59e778a5916940938ee15907a9b7bfd0-btn,#code-6369e86a94fa4586b8c69c008ef83fed-btn");
         })();
   </script>
  </body>
