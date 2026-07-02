@@ -333,7 +333,7 @@ h3 {
   color: var(--heading-colour);
 }
 
-#copyright {
+.copyright {
   color: var(--nav-fade);
   display: inline;
   float: left;
@@ -1120,7 +1120,7 @@ h1>input[type="text"]{
   .footerContainer{
     display: none;
   }
-  #copyright{
+  .copyright{
     display: contents;
   }
   .mobileFooterContainer{
