@@ -77,7 +77,7 @@ class SnippetInjectionPreprocessor(Preprocessor):
                 snippet_path = os.path.join(self.snippets_dir, snippet_filename)
 
                 if os.path.exists(snippet_path):
-                    with open(snippet_path, 'r') as f:
+                    with open(snippet_path, 'r', encoding='utf-8') as f:
                         snippet_content = f.read()
                     line = line[:match.start()] + snippet_content + line[match.end():]
                 else:
@@ -182,7 +182,7 @@ def get_yaml_header(file: str):
     # tags: 
     #     - Python
 
-    with open(file, "r") as f:
+    with open(file, "r", encoding="utf-8") as f:
         yaml_header = f.read().split("---")[1]
         yaml_header = yaml.safe_load(yaml_header)
     return yaml_header
@@ -190,7 +190,7 @@ def get_yaml_header(file: str):
 
 def get_html_content_and_esitamated_reading_time(file: str):
     """Parse the markdown content from the file"""
-    with open(file, "r") as f:
+    with open(file, "r", encoding="utf-8") as f:
         markdown_content = f.read().split("---")[2]
         html_content = markdown.markdown(markdown_content, extensions=[JoesExtension(), 'fenced_code', 'codehilite'])
     return html_content, estimate_reading_time(markdown_content)
@@ -212,7 +212,7 @@ def create_html_file(yaml_config, html_content, reading_time):
     # Create the directories if they don't exist
 
     # Read in template.html using beautiful soup
-    with open("blog-source/template.html", "r") as f:
+    with open("blog-source/template.html", "r", encoding="utf-8") as f:
         template_html = f.read()
     soup = BeautifulSoup(template_html, 'html.parser')
 
@@ -318,7 +318,7 @@ def create_html_file(yaml_config, html_content, reading_time):
     for script_file in snippet_scripts:
         script_path = os.path.join('blog-source', 'snippets', script_file)
         if os.path.exists(script_path):
-            with open(script_path, 'r') as f:
+            with open(script_path, 'r', encoding='utf-8') as f:
                 script_content = f.read()
             script_tag = soup.new_tag('script', type='text/javascript')
             script_tag.string = script_content
@@ -334,7 +334,7 @@ def create_html_file(yaml_config, html_content, reading_time):
         os.makedirs(output_folder_path, exist_ok=True)
     
     # Create the html file using the soup with indentation and formatting
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(soup.prettify())
         created_files.append(output_path)
         
@@ -356,11 +356,11 @@ def create_html_file(yaml_config, html_content, reading_time):
 
     # Create the articles.json file if it doesn't exist
     if not os.path.exists("blog/articles.json"):
-        with open("blog/articles.json", "w") as f:
+        with open("blog/articles.json", "w", encoding="utf-8") as f:
             f.write('{"articles": []}')
 
     # Read the articles.json file
-    with open("blog/articles.json", "r") as f:
+    with open("blog/articles.json", "r", encoding="utf-8") as f:
         articles_json = json.load(f)
 
     # We need to check if the article already exists in the articles.json file
@@ -391,7 +391,7 @@ def create_html_file(yaml_config, html_content, reading_time):
     articles_json['articles'] = sorted(articles_json['articles'], key=lambda x: x['date'], reverse=True)
 
     # Write the articles.json file
-    with open("blog/articles.json", "w") as f:
+    with open("blog/articles.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(articles_json, indent=4))
 
 
@@ -421,7 +421,7 @@ def update_sitemap(sitemap_file="sitemap.xml", articles_json="blog/articles.json
     root[:] = [elem for elem in root if elem.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc') is not None and '/blog/' not in elem.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc').text]
 
     # Load the articles.json file to get the lastmod date
-    with open(articles_json, "r") as f:
+    with open(articles_json, "r", encoding="utf-8") as f:
         articles = json.load(f)['articles']
 
     # Add new blog entries

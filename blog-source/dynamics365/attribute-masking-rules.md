@@ -1,11 +1,11 @@
 ---
-headline: "Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE: From A-Z"
+headline: "Attribute Masking Rules (Secured Masking Rules) - Dynamics 365 CE"
 summary: "Learn how to use Attribute Masking Rules (Secured Masking Columns) in Dynamics 365 CE to securely mask sensitive data. Tips, caveats, and real-world examples."
 date: 09/05/2025
-outputPath: ./blog/dynamics365/a-z/a/attribute-masking-rules.html
+outputPath: ./blog/dynamics365/attribute-masking-rules.html
 socialImage: /resources/images/dynamics365/attribute-masking/logo.png
 tags: 
-    - Dynamics365 A-Z
+    - Dynamics365 
 ---
 
 
